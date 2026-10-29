@@ -1,7 +1,7 @@
 # SCSA Archive
 
 > 반 전체가 함께 만드는 **코딩테스트 문제 은행**
-> Codetree · SWEA · Programmers · 백준 등에서 좋은 문제를 발굴하고, 함께 풀고, 서로의 코드를 리뷰합니다.
+> Codetree · SWEA · Programmers · 백준 등에서 좋은 문제를 발굴하고, **파이썬으로** 함께 풀고, 서로의 코드를 리뷰합니다.
 
 이 저장소의 목표는 두 가지입니다.
 
@@ -20,7 +20,7 @@ cd scsa-archive
 
 # 풀이 올리기: 브랜치 만들기 → 파일 생성 → 커밋 → 푸시 → PR
 git switch -c solve/<내아이디>/programmers-12906
-python scripts/new_solution.py problems/programmers/12906-same-numbers --author <내아이디> --lang py
+python scripts/new_solution.py problems/programmers/12906-same-numbers --author <내아이디>
 # ... 코드 작성 ...
 python scripts/validate.py
 git add .
@@ -50,11 +50,11 @@ scsa-archive/
 │   │   └── 12906-same-numbers/   # <문제id>-<영문slug>
 │   │       ├── README.md         # 메타데이터 + 문제 요약 + 힌트
 │   │       └── solutions/
-│   │           ├── Hoesu.py      # <GitHub ID>.<확장자>
-│   │           └── Hoesu_dp.java # 두 번째 풀이는 <ID>_<설명>
+│   │           ├── Hoesu.py      # <GitHub ID>.py
+│   │           └── Hoesu_dp.py   # 두 번째 풀이는 <ID>_<설명>.py
 │   ├── swea/  codetree/  boj/  leetcode/  etc/
 ├── PROBLEMS.md                   # 전체 목록 (자동 생성, 직접 수정 금지)
-├── templates/                    # 문제 README / 언어별 풀이 템플릿
+├── templates/                    # 문제 README / 풀이 템플릿
 ├── scripts/                      # 생성·검사·목록화 스크립트 (Python 표준 라이브러리만 사용)
 ├── docs/                         # 사용 설명서
 └── .github/                      # 이슈/PR 템플릿, 자동화(Actions)

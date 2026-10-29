@@ -79,7 +79,7 @@ def main() -> int:
     if existing:
         rel = existing[0].relative_to(ROOT).as_posix()
         print(f"\n이미 등록된 문제입니다: {rel}")
-        print(f"풀이만 추가하려면: python scripts/new_solution.py {rel} --author <github-id> --lang py")
+        print(f"풀이만 추가하려면: python scripts/new_solution.py {rel} --author <github-id>")
         return 1
 
     if a.slug is not None:
@@ -124,7 +124,7 @@ def main() -> int:
     rel = target.relative_to(ROOT).as_posix()
     print(f"\n생성 완료: {rel}/")
     print(f"  1) {rel}/README.md 의 '문제 요약'과 '핵심 포인트'를 직접 작성하세요 (원문 복사 금지)")
-    print(f"  2) 풀이도 함께 올리려면: python scripts/new_solution.py {rel} --author {proposer} --lang py")
+    print(f"  2) 풀이도 함께 올리려면: python scripts/new_solution.py {rel} --author {proposer}")
     return 0
 
 

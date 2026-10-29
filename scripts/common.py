@@ -23,15 +23,8 @@ PLATFORMS = {
     "etc": "기타",
 }
 
-# 확장자 -> 언어 표시 이름
-LANGUAGES = {
-    ".py": "Python",
-    ".java": "Java",
-    ".cpp": "C++",
-    ".c": "C",
-    ".js": "JavaScript",
-    ".kt": "Kotlin",
-}
+# 이 저장소는 파이썬 풀이만 받는다
+SOLUTION_EXT = ".py"
 
 DIFFICULTY_LABELS = {
     1: "입문",
@@ -45,7 +38,7 @@ REQUIRED_KEYS = ("title", "platform", "id", "url", "level", "difficulty", "tags"
 
 # 문제 폴더: 소문자/숫자와 하이픈만 (예: 12906-same-numbers, maze-escape)
 PROBLEM_DIR_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
-# 풀이 파일: <github-id>[_<설명>].<확장자> (예: hoesu.py, hoesu_bfs.java)
+# 풀이 파일: <github-id>[_<설명>].py (예: hoesu.py, hoesu_bfs.py)
 SOLUTION_FILE_RE = re.compile(r"^(?P<author>[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)(?:_(?P<variant>[a-z0-9-]+))?(?P<ext>\.[a-z]+)$")
 
 

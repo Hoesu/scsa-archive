@@ -11,9 +11,9 @@
 
 ## Programmers
 
-| 문제 | 레벨 | 난이도 | 태그 | 풀이 | 언어 | 원문 |
-|---|---|:---:|---|:---:|---|:---:|
-| [12906. 같은 숫자는 싫어](problems/programmers/12906-same-numbers) | Lv.1 | ★ | `스택/큐` `구현` | 1 | Python | [링크](https://school.programmers.co.kr/learn/courses/30/lessons/12906) |
+| 문제 | 레벨 | 난이도 | 태그 | 풀이 | 원문 |
+|---|---|:---:|---|:---:|:---:|
+| [12906. 같은 숫자는 싫어](problems/programmers/12906-same-numbers) | Lv.1 | ★ | `스택/큐` `구현` | 1 | [링크](https://school.programmers.co.kr/learn/courses/30/lessons/12906) |
 
 ## 태그별 보기
 

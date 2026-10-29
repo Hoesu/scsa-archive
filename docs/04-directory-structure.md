@@ -10,8 +10,8 @@ problems/
     └── <문제id>-<영문-slug>/          예) 12906-same-numbers, 1206-view, maze-escape
         ├── README.md                  메타데이터(front matter) + 요약 + 힌트
         └── solutions/
-            ├── <github-id>.<확장자>          예) Hoesu.py
-            └── <github-id>_<설명>.<확장자>   예) Hoesu_dfs.java
+            ├── <github-id>.py                예) Hoesu.py
+            └── <github-id>_<설명>.py         예) Hoesu_dfs.py
 ```
 
 ## 왜 이렇게 정했나요?
@@ -112,9 +112,9 @@ added: 2026-10-29                       # 등록일
 
 | 규칙 | 예 |
 |---|---|
-| `<github-id>.<확장자>` | `Hoesu.py` |
-| 같은 사람의 추가 풀이: `<github-id>_<설명>.<확장자>` (설명은 소문자/숫자/하이픈) | `Hoesu_dp.py`, `Hoesu_two-pointer.java` |
-| 지원 확장자 | `.py` `.java` `.cpp` `.c` `.js` `.kt` |
+| `<github-id>.py` | `Hoesu.py` |
+| 같은 사람의 추가 풀이: `<github-id>_<설명>.py` (설명은 소문자/숫자/하이픈) | `Hoesu_dp.py`, `Hoesu_two-pointer.py` |
+| 언어 | **파이썬만** (`.py`) |
 | 파일 맨 위에 템플릿 헤더 | 결과, 복잡도, 접근, 회고 |
 
 입출력 예제 파일(SWEA `sample_input.txt` 등)은 플랫폼 저작물이므로 저장소에 올리지 않습니다.

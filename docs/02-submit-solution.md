@@ -17,18 +17,17 @@ git switch -c solve/<내아이디>/programmers-12906
 ## 2. 풀이 파일 만들기
 
 ```bash
-python scripts/new_solution.py problems/programmers/12906-same-numbers --author <내아이디> --lang py
+python scripts/new_solution.py problems/programmers/12906-same-numbers --author <내아이디>
 ```
 
 `problems/programmers/12906-same-numbers/solutions/<내아이디>.py` 가 헤더와 함께 생성됩니다.
 
 | 상황 | 파일명 | 명령 |
 |---|---|---|
-| 기본 | `hoesu.py` | `--lang py` |
-| 다른 언어로도 풀었다 | `hoesu.java` | `--lang java` |
-| 같은 언어로 다른 방법 | `hoesu_dp.py` | `--lang py --variant dp` |
+| 기본 | `hoesu.py` | (옵션 없음) |
+| 다른 방법으로 한 번 더 풀었다 | `hoesu_dp.py` | `--variant dp` |
 
-지원 언어: `py`, `java`, `cpp`, `c`, `js`, `kt`
+> 이 저장소는 **파이썬 풀이만** 받습니다. `.py` 가 아닌 파일은 자동 검사에서 실패합니다.
 
 ### 헤더 작성하기
 
@@ -51,7 +50,6 @@ https://school.programmers.co.kr/learn/courses/30/lessons/12906
 ```
 
 - **결과**: 시간 초과/오답이 난 풀이도 환영합니다! `실패 (시간 초과)` 라고 적고 리뷰에서 도움을 받으세요.
-- **Java**: 파일명이 `<아이디>.java` 이므로 `public class` 를 쓰지 마세요. `class Solution` 처럼 `public` 없이 쓰면 됩니다.
 
 ## 3. 검사하고 커밋하기
 

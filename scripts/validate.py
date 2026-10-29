@@ -17,12 +17,12 @@ import sys
 from pathlib import Path
 
 from common import (
-    LANGUAGES,
     PLATFORMS,
     PROBLEM_DIR_RE,
     PROBLEMS_DIR,
     REQUIRED_KEYS,
     ROOT,
+    SOLUTION_EXT,
     SOLUTION_FILE_RE,
     iter_problem_dirs,
     iter_solution_files,
@@ -96,9 +96,9 @@ def check_problem(problem_dir: Path, report: Report) -> None:
     for f in iter_solution_files(problem_dir):
         m = SOLUTION_FILE_RE.match(f.name)
         if not m:
-            report.error(f, "풀이 파일명은 <github-id>.<확장자> 또는 <github-id>_<설명>.<확장자> 형식입니다")
-        elif m["ext"] not in LANGUAGES:
-            report.error(f, f"지원하지 않는 확장자입니다: {m['ext']} (지원: {', '.join(LANGUAGES)})")
+            report.error(f, "풀이 파일명은 <github-id>.py 또는 <github-id>_<설명>.py 형식입니다")
+        elif m["ext"] != SOLUTION_EXT:
+            report.error(f, f"파이썬(.py) 풀이만 받습니다: {m['ext']} 파일은 올릴 수 없어요")
 
 
 def check_tree(report: Report) -> None:

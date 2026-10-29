@@ -222,13 +222,6 @@ __marimo__/
 # Claude Code
 CLAUDE.md
 
-# Java / C / C++ 빌드 산출물
-*.class
-*.o
-*.out
-*.exe
-a.out
-
 # IDE / OS
 .idea/
 .vscode/

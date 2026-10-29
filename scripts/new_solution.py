@@ -1,10 +1,10 @@
 """문제 폴더에 내 풀이 파일을 템플릿으로 만든다.
 
 사용법:
-    python scripts/new_solution.py problems/programmers/12906-same-numbers --author hoesu --lang py
-    python scripts/new_solution.py problems/swea/1206-view --author hoesu --lang java --variant stack
+    python scripts/new_solution.py problems/programmers/12906-same-numbers --author hoesu
+    python scripts/new_solution.py problems/swea/1206-view --author hoesu --variant stack
 
---variant 를 주면 hoesu_stack.java 처럼 같은 사람이 여러 풀이를 올릴 수 있다.
+--variant 를 주면 hoesu_stack.py 처럼 같은 사람이 여러 풀이를 올릴 수 있다.
 """
 
 from __future__ import annotations
@@ -14,9 +14,9 @@ import sys
 from pathlib import Path
 
 from common import (
-    LANGUAGES,
     PLATFORMS,
     ROOT,
+    SOLUTION_EXT,
     SOLUTION_FILE_RE,
     TEMPLATES_DIR,
     parse_front_matter,
@@ -30,7 +30,6 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("problem", help="문제 폴더 경로 (예: problems/programmers/12906-same-numbers)")
     p.add_argument("--author", required=True, help="내 GitHub ID")
-    p.add_argument("--lang", required=True, choices=[e.lstrip(".") for e in LANGUAGES], help="언어 확장자")
     p.add_argument("--variant", help="같은 문제에 두 번째 풀이를 올릴 때 구분자 (예: dp, bfs)")
     a = p.parse_args()
 
@@ -42,8 +41,7 @@ def main() -> int:
         p.error(f"문제 폴더가 아니거나 README.md 가 없습니다: {a.problem}")
     meta = parse_front_matter(readme.read_text(encoding="utf-8"))
 
-    ext = "." + a.lang
-    name = a.author + (f"_{a.variant}" if a.variant else "") + ext
+    name = a.author + (f"_{a.variant}" if a.variant else "") + SOLUTION_EXT
     if not SOLUTION_FILE_RE.match(name):
         p.error(f"파일명 규칙에 맞지 않습니다: {name} (variant 는 소문자/숫자/하이픈)")
 
@@ -51,7 +49,7 @@ def main() -> int:
     if target.exists():
         p.error(f"이미 존재합니다: {target.relative_to(ROOT).as_posix()} (다른 풀이라면 --variant 를 지정하세요)")
 
-    content = render_template(TEMPLATES_DIR / f"solution{ext}", {
+    content = render_template(TEMPLATES_DIR / f"solution{SOLUTION_EXT}", {
         "title": meta.get("title", ""),
         "platform": PLATFORMS.get(meta.get("platform", ""), meta.get("platform", "")),
         "id": meta.get("id", ""),

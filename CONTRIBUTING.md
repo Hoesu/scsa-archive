@@ -26,7 +26,7 @@
 1. `main` 에 직접 푸시하지 않습니다. **항상 브랜치 → PR** 입니다.
 2. 브랜치 이름: `solve/<github-id>/<플랫폼>-<id>`, `problem/<플랫폼>-<id>`, `docs/<주제>`
 3. 문제 폴더: `problems/<플랫폼>/<id>-<영문-slug>/` (소문자, 숫자, 하이픈만)
-4. 풀이 파일: `solutions/<github-id>.<확장자>`, 같은 문제의 두 번째 풀이는 `<github-id>_<설명>.<확장자>`
+4. **풀이는 파이썬만** 받습니다. 파일: `solutions/<github-id>.py`, 같은 문제의 두 번째 풀이는 `<github-id>_<설명>.py`
 5. 풀이 파일 맨 위에는 템플릿 헤더(결과, 복잡도, 접근)를 채웁니다.
 6. **문제 원문은 복사하지 않습니다.** 링크 + 직접 쓴 요약만.
 7. `PROBLEMS.md` 는 손대지 않습니다. 머지되면 자동으로 갱신됩니다.
@@ -52,7 +52,7 @@ chore:   스크립트, 설정 등     예) chore: validate.py 에 경고 추가
 | 명령 | 하는 일 |
 |---|---|
 | `python scripts/new_problem.py` | 새 문제 폴더 생성 (대화형) |
-| `python scripts/new_solution.py <문제경로> --author <id> --lang py` | 내 풀이 파일 생성 |
+| `python scripts/new_solution.py <문제경로> --author <id>` | 내 풀이 파일 생성 |
 | `python scripts/validate.py` | 구조·이름 규칙 검사 (PR 올리기 전에!) |
 | `python scripts/build_index.py` | PROBLEMS.md 미리 보기 (커밋하지 마세요) |
 

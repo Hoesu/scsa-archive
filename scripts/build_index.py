@@ -14,7 +14,6 @@ from collections import Counter, defaultdict
 
 from common import (
     DIFFICULTY_LABELS,
-    LANGUAGES,
     PLATFORMS,
     ROOT,
     SOLUTION_FILE_RE,
@@ -35,7 +34,7 @@ def collect():
             meta = parse_front_matter(readme.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             continue  # 형식 오류는 validate.py 가 잡는다
-        authors, langs = set(), set()
+        authors = set()
         solution_count = 0
         for f in iter_solution_files(problem_dir):
             m = SOLUTION_FILE_RE.match(f.name)
@@ -43,7 +42,6 @@ def collect():
                 continue
             solution_count += 1
             authors.add(m["author"].lower())
-            langs.add(LANGUAGES.get(m["ext"], m["ext"]))
         tags = meta.get("tags") if isinstance(meta.get("tags"), list) else []
         problems.append({
             "path": problem_dir.relative_to(ROOT).as_posix(),
@@ -56,7 +54,6 @@ def collect():
             "tags": tags,
             "authors": authors,
             "solution_count": solution_count,
-            "langs": sorted(langs),
         })
     return problems
 
@@ -95,17 +92,16 @@ def render(problems) -> str:
         out += [
             f"## {PLATFORMS[platform]}",
             "",
-            "| 문제 | 레벨 | 난이도 | 태그 | 풀이 | 언어 | 원문 |",
-            "|---|---|:---:|---|:---:|---|:---:|",
+            "| 문제 | 레벨 | 난이도 | 태그 | 풀이 | 원문 |",
+            "|---|---|:---:|---|:---:|:---:|",
         ]
         for p in items:
             stars = "★" * p["difficulty"] if p["difficulty"] else "-"
             tags = " ".join(f"`{t}`" for t in p["tags"]) or "-"
-            langs = ", ".join(p["langs"]) or "-"
             link = f"[링크]({p['url']})" if p["url"] else "-"
             out.append(
                 f"| [{p['id']}. {p['title']}]({p['path']}) | {p['level']} | {stars} "
-                f"| {tags} | {p['solution_count']} | {langs} | {link} |"
+                f"| {tags} | {p['solution_count']} | {link} |"
             )
         out.append("")
 
