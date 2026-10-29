@@ -56,8 +56,8 @@ Python 3.9+ 표준 라이브러리만 쓰므로 따로 설치할 것이 없습�
 
 | 명령 | 하는 일 |
 |---|---|
-| `python scripts/new_problem.py --issue <번호>` | 제안 이슈의 정보로 문제 폴더 만들기 |
-| `python scripts/new_solution.py <문제 이름 일부>` | 문제 검색 → 작업 브랜치 생성 → 내 풀이 파일 만들기 |
+| `python scripts/new_problem.py --issue <번호>` | main 최신화 → 작업 브랜치 생성 → 제안 이슈의 정보로 문제 폴더 만들기 |
+| `python scripts/new_solution.py <문제 이름 일부>` | main 최신화 → 문제 검색 → 작업 브랜치 생성 → 내 풀이 파일 만들기 |
 | `python scripts/validate.py` | 폴더·파일 규칙 검사 (PR 올리기 전에!) |
 | `python scripts/build_index.py` | 문제 목록 미리 보기 (로컬 전용) |
 

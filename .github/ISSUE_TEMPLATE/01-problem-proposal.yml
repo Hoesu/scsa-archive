@@ -29,8 +29,8 @@ body:
     id: problem-id
     attributes:
       label: 문제 번호 / id
-      description: Codetree 처럼 번호가 없으면 URL 마지막의 영문 이름 (예. maze-escape)
-      placeholder: "12906"
+      description: 번호가 없는 Codetree 는 URL 속 영문 이름을 하이픈(-)으로 (예. maze-escape). 헷갈리면 문제 URL 을 그대로 붙여넣어도 됩니다.
+      placeholder: "12906 또는 maze-escape"
     validations:
       required: true
 

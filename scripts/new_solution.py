@@ -8,14 +8,13 @@
 
 - 내 GitHub ID 는 처음 한 번만 묻고 이 저장소의 git 설정(scsa.author)에 저장한다.
   바꾸려면: git config scsa.author <새 ID>
-- main 브랜치에서 실행하면 solve/<ID>/<플랫폼>-<id> 브랜치를 자동으로 만든다.
+- main 브랜치에서 실행하면 main 을 최신으로 받고 solve/<ID>/<플랫폼>-<id> 브랜치를 자동으로 만든다.
 """
 
 from __future__ import annotations
 
 import argparse
 import re
-import subprocess
 import sys
 from pathlib import Path
 
@@ -25,11 +24,16 @@ from common import (
     SOLUTION_EXT,
     SOLUTION_FILE_RE,
     TEMPLATES_DIR,
+    current_branch,
+    git,
     iter_problem_dirs,
     iter_solution_files,
+    nfc,
     parse_front_matter,
     render_template,
     setup_console,
+    switch_branch,
+    update_main,
 )
 
 AUTHOR_RE = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$")
@@ -40,12 +44,8 @@ class Cancelled(Exception):
     pass
 
 
-def git(*args: str) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True)
-
-
 def norm(s: str) -> str:
-    return re.sub(r"\s+", "", s).lower()
+    return re.sub(r"[\s-]+", "", nfc(s)).lower()
 
 
 # ---------------------------------------------------------------- 내 GitHub ID
@@ -182,17 +182,11 @@ def pick_variant(problem: dict, author: str, variant: str | None) -> str | None:
 
 
 def ensure_branch(problem: dict, author: str) -> str:
-    current = git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip()
+    current = current_branch()
     if current != "main":
         return current
     branch = f"solve/{author}/{problem['platform']}-{problem['id'].lower()}"
-    exists = git("rev-parse", "--verify", "--quiet", f"refs/heads/{branch}").returncode == 0
-    r = git("switch", branch) if exists else git("switch", "-c", branch)
-    if r.returncode != 0:
-        print(f"  * 브랜치를 자동으로 만들지 못했습니다: {r.stderr.strip()}")
-        print(f"    직접 만들어 주세요: git switch -c {branch}")
-        return branch
-    print(f"브랜치 {'이동' if exists else '생성'}: {branch}")
+    switch_branch(branch)
     return branch
 
 
@@ -205,6 +199,7 @@ def main() -> int:
     a = p.parse_args()
 
     author = resolve_author(a.author)
+    update_main()
     problems = load_problems(author)
 
     # 예전 방식처럼 폴더 경로를 그대로 준 경우

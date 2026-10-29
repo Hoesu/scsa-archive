@@ -14,6 +14,7 @@ import argparse
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
+from urllib.parse import quote
 
 from common import (
     DIFFICULTY_LABELS,
@@ -49,7 +50,7 @@ def collect():
         tags = meta.get("tags") if isinstance(meta.get("tags"), list) else []
         problems.append({
             "rel": problem_dir.relative_to(ROOT).as_posix(),
-            "path": f"{REPO_URL}/tree/main/{problem_dir.relative_to(ROOT).as_posix()}",
+            "path": f"{REPO_URL}/tree/main/{quote(problem_dir.relative_to(ROOT).as_posix())}",
             "platform": problem_dir.parent.name,
             "title": meta.get("title", problem_dir.name),
             "id": meta.get("id", ""),
@@ -120,8 +121,9 @@ def render(problems) -> str:
             stars = "★" * p["difficulty"] if p["difficulty"] else "-"
             tags = " ".join(f"`{t}`" for t in p["tags"]) or "-"
             link = f"[링크]({p['url']})" if p["url"] else "-"
+            name = f"{p['id']}. {p['title']}" if p["id"].isdigit() else p["title"]
             out.append(
-                f"| [{p['id']}. {p['title']}]({p['path']}) | {p['level']} | {stars} "
+                f"| [{name}]({p['path']}) | {p['level']} | {stars} "
                 f"| {tags} | {p['solution_count']} | {link} |"
             )
         out.append("")

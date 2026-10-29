@@ -11,7 +11,7 @@
 ```
 problems/
 └── <플랫폼>/                          codetree | swea | programmers | boj | jungol | leetcode | etc
-    └── <문제id>-<영문-slug>/          예) 12906-same-numbers, 1206-view, maze-escape
+    └── <문제 폴더>/                   예) 12906-같은-숫자는-싫어, 아기-고래의-첫-항해
         ├── README.md                  메타데이터(front matter) + 요약 + 힌트
         └── solutions/
             ├── <github-id>.py                예) Hoesu.py
@@ -37,25 +37,34 @@ problems/
 - 같은 문제의 풀이가 한 폴더에 모여 있어서 **다른 사람 풀이와 비교**하기 쉽습니다.
 - 파일명이 GitHub ID 라서 **서로 다른 사람의 PR 이 같은 파일을 건드릴 일이 없습니다** → 머지 충돌 최소화.
 
-### 3. 폴더명은 영문 소문자·숫자·하이픈만
+### 3. 폴더명은 문제 제목, id 는 영문
 
-- 한글/공백/대문자 경로는 Windows·macOS 간 대소문자 처리, 터미널 입력, URL 인코딩에서 문제가 생깁니다.
-- 숫자 id 를 앞에 두면 정렬이 쉽고, 영문 slug 를 뒤에 붙이면 폴더명만 보고도 어떤 문제인지 알 수 있습니다.
+| | 규칙 | 예 | 왜? |
+|---|---|---|---|
+| **폴더 이름** | 번호가 있으면 `<번호>-<제목>`, 없으면 `<제목>`. 띄어쓰기는 `-` | `12906-같은-숫자는-싫어`, `아기-고래의-첫-항해` | GitHub 에서 폴더만 보고도 어떤 문제인지 바로 알 수 있도록 |
+| **문제 id** (`id:` 값) | 영문 소문자·숫자·하이픈만 | `12906`, `baby-whale-first-voyage` | 브랜치 이름(`problem/codetree-baby-whale-first-voyage`)과 중복 검사에 쓰이므로 |
+
+- 번호를 앞에 두면 같은 플랫폼 안에서 번호순으로 정렬됩니다.
+- 공백, 대문자, 특수문자(`[ ] / . +` 등)는 터미널과 URL 에서 문제가 생기므로 폴더 이름에서 빠집니다.
+- 경로를 직접 칠 일은 거의 없습니다. 풀이 스크립트는 **제목 일부로 검색**해요.
+
+> [!TIP]
+> 터미널에서 한글 파일명이 `"\352\260\231..."` 처럼 보이면 `git config --global core.quotepath false` 를 실행하세요. ([00. 환경 준비](00-getting-started.md#3-git-최초-설정) 에 포함)
 
 ## 플랫폼별 id 정하는 법
 
-| 플랫폼 | 폴더 key | id 로 쓸 값 | URL 예시 → 폴더명 |
+| 플랫폼 | 폴더 key | id 로 쓸 값 | 예시: id → 폴더명 |
 |---|---|---|---|
-| Programmers | `programmers` | URL 의 `lessons/` 뒤 숫자 | `.../lessons/12906` → `12906-same-numbers` |
-| SW Expert Academy | `swea` | 문제 제목 앞의 번호 | `1206. [S/W 문제해결 기본] 1일차 - View` → `1206-view` |
-| Codetree | `codetree` | 번호가 없으므로 URL 의 **마지막 영문 이름** | `.../problems/maze-escape/...` → `maze-escape` |
-| 백준 | `boj` | 문제 번호 | `acmicpc.net/problem/1000` → `1000-a-plus-b` |
-| JUNGOL (정올) | `jungol` | 문제 번호 | `jungol.co.kr/problem/1000` → `1000-a-plus-b` |
-| LeetCode | `leetcode` | 문제 번호 | `1. Two Sum` → `1-two-sum` |
+| Programmers | `programmers` | URL 의 `lessons/` 뒤 숫자 | `12906` → `12906-같은-숫자는-싫어` |
+| SW Expert Academy | `swea` | 문제 제목 앞의 번호 | `1206` → `1206-s-w-문제해결-기본-1일차-view` |
+| Codetree | `codetree` | 번호가 없으므로 URL 속 **영문 이름** | `.../problems/maze-escape/description` → `maze-escape` → `미로-탈출` |
+| 백준 | `boj` | 문제 번호 | `1000` → `1000-a-b` |
+| JUNGOL (정올) | `jungol` | 문제 번호 | `1000` → `1000-a-b` |
+| LeetCode | `leetcode` | 문제 번호 | `1` → `1-two-sum` |
 | 그 외 | `etc` | 출처를 알 수 있는 영문 id | `kakao-2023-emoticon` |
 
 > **SWEA 주의**: 접속 URL 의 `contestProbId=AV5LrsUaDxcDFAXc` 같은 긴 값이 아니라 **화면에 보이는 문제 번호**(1206)를 씁니다.
-> **slug 짓기**: 영어 제목이 있으면 그것을, 없으면 핵심을 2~4단어 영어로. 너무 고민하지 마세요. id 가 유일성을 보장합니다.
+> **id 를 잘못 적었다면?** 스크립트가 `Maze_Escape` → `maze-escape` 처럼 고쳐 줍니다. URL 을 통째로 적어도 그 안에서 id 를 꺼내요.
 
 새 플랫폼을 추가하려면 `scripts/common.py` 의 `PLATFORMS`, `scripts/setup_labels.py`, `.github/labeler.yml` 을 함께 수정하는 PR 을 올려주세요.
 
@@ -67,7 +76,7 @@ problems/
 ---
 title: 같은 숫자는 싫어                 # 원문 제목 그대로
 platform: programmers                   # 상위 폴더명과 같아야 함
-id: 12906                               # 폴더명이 이 값으로 시작해야 함
+id: 12906                               # 영문 소문자/숫자/하이픈 (숫자면 폴더명 앞에 붙음)
 url: https://school.programmers.co.kr/learn/courses/30/lessons/12906
 level: Lv.1                             # 플랫폼에 표기된 레벨 그대로
 difficulty: 1                           # 공통 난이도 1~5 (아래 표)
@@ -81,7 +90,7 @@ added: 2026-10-29                       # 등록일
 |---|:---:|---|
 | `title`, `level`, `proposer` | ✅ | 비어 있지 않음 |
 | `platform` | ✅ | 상위 폴더명과 일치 |
-| `id` | ✅ | 폴더명이 `<id>` 또는 `<id>-...` |
+| `id` | ✅ | 영문 소문자·숫자·하이픈만. 숫자면 폴더명이 `<id>-...` 로 시작. 플랫폼 안에서 중복 불가 |
 | `url` | ✅ | `http(s)://` 로 시작 |
 | `difficulty` | ✅ | 1~5 정수 |
 | `tags` | ✅ | `[a, b]` 형식 리스트 |

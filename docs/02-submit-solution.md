@@ -5,8 +5,8 @@
 **한눈에 보기**
 
 ```bash
-git switch main && git pull
-python scripts/new_solution.py 같은숫자        # ① 문제 검색 + 브랜치 + 풀이 파일 생성
+git switch main
+python scripts/new_solution.py 같은숫자        # ① 최신화 + 문제 검색 + 브랜치 + 풀이 파일 생성
 # ② solutions/<내아이디>.py 에 헤더와 코드 작성
 python scripts/validate.py                     # ③ 검사
 git add problems/
@@ -21,15 +21,16 @@ git push -u origin solve/<내아이디>/programmers-12906
 
 ## 1. 풀이 파일 만들기
 
-`main` 을 최신으로 받은 뒤, 풀 문제의 **이름 일부**를 넣어 실행합니다.
+`main` 브랜치에서 풀 문제의 **이름 일부**를 넣어 실행합니다.
 
 ```bash
-git switch main && git pull
+git switch main
 python scripts/new_solution.py 같은숫자
 ```
 
 스크립트가 알아서 해주는 것:
 
+- **최신화**: `main` 을 최신으로 받습니다. (`git pull`)
 - **GitHub ID**: 처음 한 번만 묻고 기억합니다. (바꾸려면 `git config scsa.author <새 ID>`)
 - **문제 찾기**: 제목·번호·폴더 이름 일부로 검색합니다. 여러 개가 맞으면 번호로 고르게 해줘요.
 - **브랜치**: `solve/<내아이디>/<플랫폼>-<번호>` 브랜치를 만들고 이동합니다.
@@ -40,7 +41,7 @@ python scripts/new_solution.py 같은숫자
 <details>
 <summary>검색은 어떻게 동작하나요?</summary>
 
-띄어쓰기와 대소문자는 무시합니다.
+띄어쓰기, 하이픈(`-`), 대소문자는 무시합니다.
 
 | 입력 예 | 결과 |
 |---|---|
@@ -144,7 +145,7 @@ git branch -D solve/<내아이디>/programmers-12906
 |---|---|
 | `validate` 실패: 풀이 파일명 형식 | 파일명에 공백, 한글, 점(`.`)이 들어갔는지 확인 |
 | `validate` 경고: PR 작성자와 다름 | 파일명은 **본인 GitHub ID** 여야 합니다. `git config scsa.author` 확인 |
-| 검색해도 문제가 안 나옴 | `git switch main && git pull` 로 최신 내용을 받은 뒤 다시 실행 |
+| 검색해도 문제가 안 나옴 | `main` 이 아닌 브랜치에서 실행하면 최신화를 건너뜁니다. `git switch main` 후 다시 실행 |
 | PR 에 남의 파일 변경이 섞여 있음 | 오래된 브랜치에서 작업한 경우. [Git 치트시트](06-git-cheatsheet.md#main-최신-내용을-내-브랜치에-반영하기) 참고 |
 | `main` 에서 커밋해버렸다 | [Git 치트시트](06-git-cheatsheet.md#실수로-main-에-커밋했어요) 참고 |
 

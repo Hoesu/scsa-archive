@@ -13,7 +13,7 @@ body:
     id: problem
     attributes:
       label: 문제 경로
-      placeholder: problems/programmers/12906-same-numbers
+      placeholder: problems/programmers/12906-같은-숫자는-싫어
     validations:
       required: true
 
