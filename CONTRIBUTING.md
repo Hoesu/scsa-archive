@@ -9,7 +9,7 @@
  Issue: 문제 제안  ──채택──▶  PR: 문제 폴더 추가  ──머지──▶  PR: 풀이 추가 ──리뷰/승인──▶ 머지
    (라벨: 문제-제안)           (Closes #이슈번호)              (누구나 언제든)
                                                                     │
-                                              Actions 가 PROBLEMS.md 자동 갱신 ◀─┘
+                                              Actions 가 index 브랜치의 PROBLEMS.md 자동 갱신 ◀─┘
 ```
 
 | 단계 | 누가 | 무엇을 | 가이드 |
@@ -29,7 +29,7 @@
 4. **풀이는 파이썬만** 받습니다. 파일: `solutions/<github-id>.py`, 같은 문제의 두 번째 풀이는 `<github-id>_<설명>.py`
 5. 풀이 파일 맨 위에는 템플릿 헤더(결과, 복잡도, 접근)를 채웁니다.
 6. **문제 원문은 복사하지 않습니다.** 링크 + 직접 쓴 요약만.
-7. `PROBLEMS.md` 는 손대지 않습니다. 머지되면 자동으로 갱신됩니다.
+7. 전체 목록 [`PROBLEMS.md`](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md)는 머지되면 `index` 브랜치에 자동으로 갱신됩니다. 직접 만들거나 올리지 않습니다.
 8. **PR 1개 = 문제 1개.** 여러 문제를 한 PR에 섞지 않습니다. (리뷰하기 어려워요)
 9. PR 은 **1명 이상 승인 + 자동 검사 통과** 후 작성자가 직접 머지합니다.
 10. **기브 앤 테이크**: PR 을 1개 올렸다면 다른 사람 PR 도 1개 리뷰해 주세요.
@@ -54,7 +54,7 @@ chore:   스크립트, 설정 등     예) chore: validate.py 에 경고 추가
 | `python scripts/new_problem.py` | 새 문제 폴더 생성 (대화형) |
 | `python scripts/new_solution.py <문제경로> --author <id>` | 내 풀이 파일 생성 |
 | `python scripts/validate.py` | 구조·이름 규칙 검사 (PR 올리기 전에!) |
-| `python scripts/build_index.py` | PROBLEMS.md 미리 보기 (커밋하지 마세요) |
+| `python scripts/build_index.py` | PROBLEMS.md 미리 보기 (로컬 전용, 자동으로 커밋 제외됨) |
 
 > Windows 에서 `python` 이 안 되면 `py` 로 바꿔서 실행해 보세요.
 

@@ -74,17 +74,14 @@ squash 하나만 허용하면 `main` 기록이 "PR 1개 = 커밋 1개" 로 깔�
 | └ Require conversation resolution before merging | ✅ (리뷰 코멘트를 무시하고 머지하는 것 방지) |
 | Require status checks to pass | ✅ → `validate` 추가 (PR 을 한 번 올려서 검사가 실행된 뒤에 목록에 나타남) |
 
-### 자동 커밋 허용 (중요)
+### 전체 문제 목록(PROBLEMS.md)은 index 브랜치에
 
-`build-index` 워크플로는 머지 후 `PROBLEMS.md` 를 `main` 에 **직접 커밋**합니다.
-위 규칙이 이 커밋까지 막으면 워크플로가 실패하므로, 다음 중 하나를 선택하세요.
+`build-index` 워크플로는 머지될 때마다 `PROBLEMS.md` 를 만들어 **`index` 브랜치**에 커밋합니다.
+보호 규칙은 `main` 에만 걸려 있으므로 봇이 자유롭게 갱신할 수 있습니다.
+(개인 계정 저장소에서는 GitHub Actions 를 Ruleset 의 bypass 목록에 넣을 수 없어서 이렇게 구성했습니다)
 
-- **방법 A (권장)**: Ruleset 의 **Bypass list → Add bypass** 에서 GitHub Actions 앱을 추가
-  (목록에 보이지 않으면 방법 B)
-- **방법 B**: Personal Access Token(fine-grained, 이 저장소 `Contents: Read and write`)을 만들어
-  **Settings → Secrets and variables → Actions** 에 `INDEX_TOKEN` 으로 저장하고,
-  `build-index.yml` 의 checkout 단계에 `with: token: ${{ secrets.INDEX_TOKEN }}` 를 추가 (토큰 소유자가 bypass 권한을 가진 관리자여야 함)
-- **방법 C**: 자동 갱신을 포기하고 운영진이 주기적으로 `python scripts/build_index.py` 후 PR 로 반영
+- `index` 브랜치는 **삭제하거나 보호 규칙 대상에 넣지 마세요.** 지워져도 다음 실행 때 다시 만들어집니다.
+- 수동으로 다시 만들려면: **Actions → build-index → Run workflow**
 
 ## 6. Actions 권한
 
@@ -122,4 +119,4 @@ squash 하나만 허용하면 `main` 기록이 "PR 1개 = 커밋 1개" 로 깔�
 |---|---|
 | 월 | 지난주 `채택` 이슈 중 3~5개를 이번 주 Milestone 에 배정, 공지 |
 | 화~목 | 문제 등록/풀이 PR 리뷰. 오래 방치된 PR 에 리뷰어 지정 |
-| 금 | 주간 회고 스레드 열기, Milestone 닫기, PROBLEMS.md 기여 현황 공유 |
+| 금 | 주간 회고 스레드 열기, Milestone 닫기, [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 기여 현황 공유 |

@@ -229,6 +229,9 @@ CLAUDE.md
 .DS_Store
 Thumbs.db
 
+# 전체 문제 목록은 index 브랜치에서 관리 (로컬 미리 보기 파일이 커밋되지 않도록)
+/PROBLEMS.md
+
 # 로컬 테스트용 입출력 (플랫폼 저작물이므로 커밋하지 않음)
 input.txt
 output.txt

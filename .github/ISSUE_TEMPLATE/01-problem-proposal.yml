@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         좋은 문제를 발굴해 주셔서 감사합니다!
-        제출 전에 [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/main/PROBLEMS.md) 와 열린 이슈에서 **이미 등록/제안된 문제인지** 검색해 주세요.
+        제출 전에 [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 와 열린 이슈에서 **이미 등록/제안된 문제인지** 검색해 주세요.
         제안이 `채택` 라벨을 받으면 [문제 등록 가이드](https://github.com/Hoesu/scsa-archive/blob/main/docs/01-propose-problem.md)에 따라 PR을 올려주세요.
 
   - type: dropdown

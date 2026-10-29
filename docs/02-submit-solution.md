@@ -102,7 +102,7 @@ git pull
 git branch -d solve/<내아이디>/programmers-12906
 ```
 
-몇 분 뒤 [PROBLEMS.md](../PROBLEMS.md) 의 풀이 수와 기여 현황에 내 이름이 반영됩니다. 🎉
+몇 분 뒤 [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 의 풀이 수와 기여 현황에 내 이름이 반영됩니다. 🎉
 
 ## 자주 하는 실수
 
