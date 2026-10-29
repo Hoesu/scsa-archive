@@ -111,8 +111,8 @@ def search(problems: list[dict], query: str) -> list[dict]:
 
 
 def describe(p: dict) -> str:
-    mine = " (내 풀이 있음)" if p["mine"] else ""
-    return f"[{PLATFORMS.get(p['platform'], p['platform'])}] {p['title']}  - 풀이 {p['count']}개{mine}"
+    mine = ", 내 풀이 있음" if p["mine"] else ""
+    return f"[{PLATFORMS.get(p['platform'], p['platform'])}] {p['title']} (풀이 {p['count']}개{mine})"
 
 
 def choose(cands: list[dict], header: str) -> dict:
@@ -226,15 +226,14 @@ def main() -> int:
         gitkeep.unlink()
 
     rel = target.relative_to(ROOT).as_posix()
-    print(f"\n생성 완료: {rel}\n")
-    print("다음 단계:")
-    print(f"  1) {rel} 를 열어 헤더(결과, 접근)와 코드를 작성 (복잡도는 선택)")
+    print(f"파일 생성: {rel}\n")
+    print("다음 단계")
+    print("  1) 헤더(결과, 접근)와 코드 작성")
     print("  2) python scripts/validate.py")
-    print("  3) 아래 세 줄을 그대로 실행")
-    print("     git add problems/")
+    print("  3) git add problems/")
     print(f"     git commit -m \"[풀이] {problem['title']}\"")
     print(f"     git push -u origin {branch}")
-    print("  4) GitHub 저장소 페이지의 Compare & pull request 버튼으로 PR 만들기")
+    print("  4) GitHub 에서 PR 만들기")
     return 0
 
 
