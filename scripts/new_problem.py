@@ -229,7 +229,7 @@ def main() -> int:
     print(f"  3) git add problems/ && git commit -m \"[문제] {title}\"")
     print(f"  4) git push -u origin {current_branch() if current_branch() not in ('main', '') else branch}")
     if a.issue:
-        print(f"  5) PR 본문의 'Closes #' 를 'Closes #{a.issue}' 로 채우면 머지 때 이슈가 자동으로 닫힙니다")
+        print(f"  5) PR 본문에 'Closes #{a.issue}' 한 줄을 적으면 머지 때 이슈가 자동으로 닫힙니다")
     return 0
 
 
