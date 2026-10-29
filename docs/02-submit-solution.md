@@ -6,31 +6,40 @@
 - **풀 문제를 찾고 있다면** [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 의 **풀이를 기다리는 문제** 목록을 보세요. 아직 풀이가 하나도 없는 문제와 경로가 정리되어 있습니다.
 - 아직 등록되지 않은 문제라면 [01. 문제 제안·등록](01-propose-problem.md)을 먼저 보세요.
 
-## 1. 브랜치 만들기
+## 1. 풀이 파일 만들기 (브랜치 자동 생성)
+
+`main` 을 최신으로 받은 뒤, 풀 문제의 **이름 일부**를 넣어 실행합니다.
 
 ```bash
 git switch main
 git pull
-git switch -c solve/<내아이디>/programmers-12906
+python scripts/new_solution.py 같은숫자
 ```
+
+스크립트가 알아서 해주는 것:
+
+1. **내 GitHub ID**: 처음 한 번만 묻고 기억합니다. (바꾸려면 `git config scsa.author <새 ID>`)
+2. **문제 찾기**: 제목·문제 번호·폴더 이름 일부로 검색합니다. 띄어쓰기와 대소문자는 무시해요.
+
+   | 입력 예 | 결과 |
+   |---|---|
+   | `같은숫자`, `아기 고래` | 하나만 맞으면 "이 문제가 맞나요?" 확인 후 진행 |
+   | `벨트`, `codetree` | 여러 개가 맞으면 번호 목록에서 고르기 |
+   | `12906` | 문제 번호를 정확히 치면 바로 그 문제 |
+   | (아무것도 안 넣음) | 전체 목록에서 고르기. 풀이가 없는 문제가 먼저 나와요 |
+   | 맞는 게 없음 | 다시 검색하거나 Enter 로 전체 목록 보기 |
+
+3. **브랜치**: `main` 에서 실행하면 `solve/<내아이디>/<플랫폼>-<번호>` 브랜치를 자동으로 만들고 이동합니다.
+4. **풀이 파일**: `solutions/<내아이디>.py` 를 헤더와 함께 만듭니다.
+   이미 내 풀이가 있는 문제면 **두 번째 풀이의 구분 이름**(예: `dp` → `<내아이디>_dp.py`)을 물어봐요.
+5. **다음 명령 안내**: 문제 제목과 브랜치 이름이 채워진 커밋·푸시 명령을 출력합니다.
 
 > **왜 브랜치를 쓰나요?** `main` 은 모두가 공유하는 "정본" 입니다. 각자 브랜치에서 작업하고,
 > 리뷰를 거친 것만 `main` 에 합치면 서로의 작업이 섞이거나 망가지지 않습니다.
 
-## 2. 풀이 파일 만들기
-
-```bash
-python scripts/new_solution.py problems/programmers/12906-same-numbers --author <내아이디>
-```
-
-`problems/programmers/12906-same-numbers/solutions/<내아이디>.py` 가 헤더와 함께 생성됩니다.
-
-| 상황 | 파일명 | 명령 |
-|---|---|---|
-| 기본 | `hoesu.py` | (옵션 없음) |
-| 다른 방법으로 한 번 더 풀었다 | `hoesu_dp.py` | `--variant dp` |
-
 > 이 저장소는 **파이썬 풀이만** 받습니다. `.py` 가 아닌 파일은 자동 검사에서 실패합니다.
+
+## 2. 코드와 헤더 작성하기
 
 ### 헤더 작성하기
 
@@ -56,10 +65,12 @@ https://school.programmers.co.kr/learn/courses/30/lessons/12906
 
 ## 3. 검사하고 커밋하기
 
+1단계 스크립트가 마지막에 출력한 명령을 그대로 실행하면 됩니다.
+
 ```bash
 python scripts/validate.py
 git status                       # 내가 바꾼 파일만 있는지 확인
-git add problems/programmers/12906-same-numbers/solutions/
+git add problems/
 git commit -m "[풀이] 같은 숫자는 싫어"
 git push -u origin solve/<내아이디>/programmers-12906
 ```
