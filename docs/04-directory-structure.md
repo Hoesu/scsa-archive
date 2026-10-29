@@ -2,6 +2,10 @@
 
 여러 플랫폼(Codetree, SWEA, Programmers, 백준 …)에서 모은 문제를 **한 가지 규칙**으로 정리하는 방법입니다.
 
+> [!NOTE]
+> 폴더·파일 이름은 `new_problem.py`, `new_solution.py` 가 알아서 맞춰주므로 **외울 필요는 없습니다.**
+> 이 문서는 규칙이 궁금하거나, 난이도·태그를 정할 때 참고하는 용도예요.
+
 ## 한눈에 보기
 
 ```
@@ -122,4 +126,4 @@ added: 2026-10-29                       # 등록일
 
 ---
 
-다음: [05. GitHub 기능 둘러보기](05-github-features.md)
+[← 03. 코드 리뷰](03-code-review.md) · [📚 문서 목록](../README.md#문서-안내) · [05. GitHub 기능 둘러보기 →](05-github-features.md)

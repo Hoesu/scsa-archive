@@ -1,18 +1,26 @@
 # 06. Git 치트시트
 
+자주 쓰는 Git 명령과, 실수했을 때 되돌리는 방법을 모았습니다.
+
 ## 기본 흐름
+
+> [!TIP]
+> 풀이를 올릴 때는 `new_solution.py` 가 2번(브랜치 생성)을 대신 해줍니다. 아래는 Git 이 실제로 하는 일을 이해하기 위한 전체 흐름이에요.
 
 ```bash
 git switch main && git pull                           # 1. 최신화
-git switch -c solve/<id>/programmers-12906            # 2. 브랜치 생성
+git switch -c solve/<내아이디>/programmers-12906      # 2. 브랜치 생성
 # ... 작업 ...
 git status                                            # 3. 변경 확인
 git add <파일>                                         # 4. 스테이징
 git commit -m "[풀이] 같은 숫자는 싫어"                # 5. 커밋
-git push -u origin solve/<id>/programmers-12906       # 6. 푸시 (처음엔 -u)
+git push -u origin solve/<내아이디>/programmers-12906 # 6. 푸시 (처음엔 -u)
 # 7. GitHub 에서 PR 생성 → 리뷰 → 머지
-git switch main && git pull && git branch -d solve/<id>/programmers-12906   # 8. 정리
+git switch main && git pull && git branch -D solve/<내아이디>/programmers-12906   # 8. 정리
 ```
+
+> [!NOTE]
+> 8번에서 `-d` 대신 `-D` 를 쓰는 이유: squash 머지는 커밋을 새로 만들기 때문에 Git 이 "아직 안 합쳐진 브랜치"로 착각해 `-d` 를 거부합니다. PR 이 머지된 걸 확인했다면 `-D` 로 지워도 안전해요.
 
 ## 자주 쓰는 명령
 
@@ -33,7 +41,7 @@ PR 을 올려 둔 사이 `main` 이 바뀌어서 충돌이 나거나 최신 내�
 ```bash
 git switch main
 git pull
-git switch solve/<id>/programmers-12906
+git switch solve/<내아이디>/programmers-12906
 git merge main          # 충돌이 나면 아래 "충돌 해결" 참고
 git push
 ```
@@ -82,10 +90,10 @@ git restore --staged <파일>    # add 만 취소 (내용은 유지)
 ### 실수로 main 에 커밋했어요
 아직 push 하지 않았다면, 커밋을 새 브랜치로 옮기고 main 은 원격 상태로 되돌립니다.
 ```bash
-git switch -c solve/<id>/programmers-12906   # 지금 커밋을 가진 채로 새 브랜치 생성
+git switch -c solve/<내아이디>/programmers-12906   # 지금 커밋을 가진 채로 새 브랜치 생성
 git switch main
-git reset --hard origin/main                  # main 을 원격과 같게 (새 브랜치에 커밋이 있으니 안전)
-git switch solve/<id>/programmers-12906
+git reset --hard origin/main                        # main 을 원격과 같게 (새 브랜치에 커밋이 있으니 안전)
+git switch solve/<내아이디>/programmers-12906
 ```
 (`main` 은 보호되어 있어서 push 는 거부됩니다. 걱정 마세요.)
 
@@ -118,3 +126,7 @@ git stash         # 지금 작업을 잠시 치워두기 (git stash pop 으로 �
 | squash merge | PR 의 여러 커밋을 하나로 합쳐서 머지 |
 | fork | 남의 저장소를 내 계정으로 복사 |
 | upstream / origin | 원본 저장소 / 내가 clone 한 저장소 |
+
+---
+
+[← 05. GitHub 기능 둘러보기](05-github-features.md) · [📚 문서 목록](../README.md#문서-안내)

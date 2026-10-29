@@ -80,4 +80,4 @@
 
 ---
 
-다음: [06. Git 치트시트](06-git-cheatsheet.md)
+[← 04. 폴더 구조와 네이밍](04-directory-structure.md) · [📚 문서 목록](../README.md#문서-안내) · [06. Git 치트시트 →](06-git-cheatsheet.md)

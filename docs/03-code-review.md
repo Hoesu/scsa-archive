@@ -3,6 +3,8 @@
 코드 리뷰는 이 저장소에서 **가장 많이 배우는 시간**입니다.
 같은 문제를 다른 사람은 어떻게 풀었는지 보고, 내 풀이와 비교하며 질문하는 것만으로도 실력이 늡니다.
 
+**한눈에 보기**: 리뷰할 PR 찾기 → **Files changed** 에서 줄마다 코멘트 (말머리 붙이기) → **Approve** 또는 **Comment** 로 제출
+
 ## 리뷰할 PR 찾기
 
 - [`풀이` 라벨이 붙은 열린 PR](https://github.com/Hoesu/scsa-archive/pulls?q=is%3Aopen+label%3A풀이)
@@ -82,4 +84,4 @@
 
 ---
 
-다음: [04. 폴더 구조와 네이밍](04-directory-structure.md)
+[← 02. 풀이 제출](02-submit-solution.md) · [📚 문서 목록](../README.md#문서-안내) · [04. 폴더 구조와 네이밍 →](04-directory-structure.md)

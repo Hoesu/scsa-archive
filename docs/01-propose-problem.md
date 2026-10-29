@@ -1,60 +1,84 @@
 # 01. 문제 제안·등록
 
-좋은 문제를 발견했다면 **Issue 로 제안**하고, 채택되면 **PR 로 등록**합니다.
-제안과 등록을 나누는 이유는 중복 등록을 막고, 반 전체가 "어떤 문제를 같이 풀지" 논의할 기회를 만들기 위해서입니다.
+좋은 문제를 발견했다면 **이슈로 제안**하고, 채택되면 **PR 로 등록**합니다.
+제안과 등록을 나누는 이유는 중복을 막고, 반 전체가 "어떤 문제를 같이 풀지" 함께 정하기 위해서입니다.
 
-## 1단계. 중복 확인
+**한눈에 보기**
 
-- [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 에서 `Ctrl+F` 로 번호/제목 검색
-- [Issues](https://github.com/Hoesu/scsa-archive/issues?q=label%3A문제-제안) 에서 열린/닫힌 제안 검색
+| 단계 | 어디서 | 누가 |
+|---|---|---|
+| 1. 중복 확인 | 웹 | 제안자 |
+| 2. 이슈로 제안 | 웹 | 제안자 |
+| 3. 채택 | 웹 | 반 전체 투표 + 운영진 |
+| 4. 문제 등록 PR | 터미널 + 웹 | 제안자 또는 지원자 |
 
-## 2단계. Issue 로 제안하기
+## 1. 중복 확인
 
-1. **Issues → New issue → `문제 제안`** 템플릿 선택
-2. 플랫폼, 번호, 링크, 레벨, 체감 난이도, 태그, **추천 이유**를 채웁니다
-3. 제목은 미리 들어가 있는 `[제안]` 뒤에 **문제 이름만** 자유롭게 적으면 됩니다. 예) `[제안] 같은 숫자는 싫어`
-   (플랫폼·번호는 아래 칸에 따로 적으니 제목에 넣지 않아도 돼요)
-4. **Submit new issue**
+- [전체 문제 목록](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 에서 `Ctrl+F` 로 번호·제목 검색
+- [문제 제안 이슈](https://github.com/Hoesu/scsa-archive/issues?q=label%3A문제-제안) 에서 열린/닫힌 제안 검색
 
+## 2. 이슈로 제안하기
+
+**Issues → New issue → 문제 제안** 을 고르고 칸을 채운 뒤 **Submit new issue** 를 누릅니다.
+
+| 칸 | 작성 요령 |
+|---|---|
+| 제목 | 미리 들어간 `[제안]` 뒤에 자유롭게. 예) `[제안] 같은 숫자는 싫어` |
+| 플랫폼 / 문제 번호 | Codetree 처럼 번호가 없으면 URL 마지막의 영문 이름 (예: `maze-escape`) |
+| **문제 제목** | 플랫폼에 표기된 제목을 **그대로, 정확하게**. 목록·README 에 이 이름이 쓰입니다 |
+| 링크 / 레벨 | 플랫폼 표기 그대로 (예: `Lv.2`, `D3`, `Silver 2`) |
+| 체감 난이도 | 1~5. 기준은 [04 문서의 난이도 기준표](04-directory-structure.md#공통-난이도-기준표) |
+| 태그 | 쉼표로 구분. [표준 태그](04-directory-structure.md#태그-작성-가이드)를 우선 사용 |
+| 추천 이유 | 왜 같이 풀면 좋은지. 등록할 때 README 에 그대로 들어갑니다 |
+
+> [!TIP]
 > **좋은 추천 이유의 예**
 > - "삼성 A형 기출 유형인 시뮬레이션 + BFS 조합이라 연습하기 좋아요"
 > - "투 포인터 입문 문제로 딱이에요. 처음에 O(N²) 으로 풀면 시간 초과가 나서 개선을 경험할 수 있어요"
 
-## 3단계. 채택
+## 3. 채택
 
-- 다른 사람들은 마음에 드는 제안에 👍 리액션을 남깁니다.
+- 마음에 드는 제안에는 👍 리액션으로 투표합니다.
 - **👍 3개 이상** 또는 운영진 판단으로 `채택` 라벨이 붙습니다.
 - 이미 있는 문제는 `중복`, 논의가 더 필요하면 `보류` 라벨이 붙습니다.
-- 운영진은 채택된 문제를 이번 주 **Milestone** 에 넣기도 합니다. ([05 문서](05-github-features.md) 참고)
 
-## 4단계. 문제 등록 PR
+> [!NOTE]
+> **운영진용**: 이슈 오른쪽 사이드바 **Labels** 옆 ⚙️ → `채택` 체크. 등록할 사람은 **Assignees** 에, 이번 주 문제라면 **Milestone** 에 지정하세요.
+
+## 4. 문제 등록하기
 
 채택되면 제안자(또는 이슈에 "제가 할게요!" 댓글을 단 사람)가 등록합니다.
-작업을 시작할 때 이슈 오른쪽 **Assignees** 에 자신을 지정하면 중복 작업을 막을 수 있어요.
+시작할 때 이슈의 **Assignees** 에 자신을 지정하면 다른 사람과 겹치지 않아요.
+
+### 4-1. 문제 폴더 만들기
 
 ```bash
 git switch main && git pull
-git switch -c problem/programmers-12906
-
-python scripts/new_problem.py --issue <제안 이슈 번호>     # 예) --issue 12
+git switch -c problem/<플랫폼>-<번호>               # 예) problem/programmers-12906
+python scripts/new_problem.py --issue <이슈 번호>    # 예) --issue 12
 ```
 
-`--issue` 를 주면 **제안 이슈에 적힌 정보를 그대로 가져옵니다.** 플랫폼, 번호, 제목, 링크, 레벨, 난이도, 태그, 제안자, 추천 이유를 다시 입력할 필요가 없어요.
-번호가 숫자인 문제는 폴더명에 쓸 영문 slug 하나만 물어봅니다. (예: `same-numbers`, 생략 가능)
-스크립트가 마지막에 커밋 메시지와 `Closes #번호` 까지 알려줍니다.
+`--issue` 를 주면 **이슈에 적힌 정보를 그대로 가져옵니다.** 다시 입력할 것은 거의 없어요.
 
-> 이슈 없이 등록하려면 `python scripts/new_problem.py` 만 실행하세요. 질문에 차례로 답하면 됩니다.
+- 문제 번호가 숫자인 경우에만 폴더 이름에 붙일 **영문 slug** 를 물어봅니다. (예: `same-numbers`, 생략 가능)
+- 마지막에 커밋 메시지와 PR 에 쓸 `Closes #번호` 까지 알려줍니다.
 
-생성된 `problems/<플랫폼>/<id>-<slug>/README.md` 를 열어 아래를 **직접** 작성합니다.
+### 4-2. README 작성하기
+
+만들어진 `problems/<플랫폼>/<폴더>/README.md` 를 열어 아래를 **직접** 씁니다.
 
 | 섹션 | 작성 요령 |
 |---|---|
-| 문제 요약 | 입력/출력이 무엇인지 2~4줄. **원문 복사 금지** |
+| 문제 요약 | 무엇을 입력받아 무엇을 구하는지 2~4줄. **원문 복사 금지** |
 | 추천 이유 | 이슈에서 자동으로 들어옵니다. 필요하면 다듬기 |
 | 핵심 포인트 / 함정 | 제한 조건, 엣지 케이스. 정답을 직접 말하지는 않기 |
 | 힌트 1, 2 | 접힌 블록(`<details>`) 안에 단계적으로 |
 
 예시: [`problems/programmers/12906-same-numbers/README.md`](../problems/programmers/12906-same-numbers/README.md)
+
+### 4-3. 커밋 → 푸시 → PR
+
+스크립트가 마지막에 출력한 명령을 그대로 실행하면 됩니다.
 
 ```bash
 python scripts/validate.py
@@ -63,24 +87,21 @@ git commit -m "[문제] 같은 숫자는 싫어"
 git push -u origin problem/programmers-12906
 ```
 
-GitHub 에서 PR 을 만들 때:
-- 제목: `[문제] 같은 숫자는 싫어` (커밋 메시지를 이 형식으로 썼다면 이미 채워져 있어요)
-- 본문 아무 곳에 `Closes #제안이슈번호` 한 줄을 적습니다 → 머지되면 이슈가 자동으로 닫힙니다.
+GitHub 에서 **Compare & pull request** 를 누르고, PR 본문에 **`Closes #이슈번호`** 한 줄을 적으세요. 머지될 때 제안 이슈가 자동으로 닫힙니다.
 
-### 풀이는 같이? 나중에?
+> [!TIP]
+> **풀이도 같이 올릴까요?** 둘 다 됩니다.
+> - **같이**: 커밋 전에 `python scripts/new_solution.py <문제 이름 일부>` 로 풀이 파일을 만들어 같은 PR 에 넣으세요.
+> - **나중에**: 문제만 먼저 올려도 됩니다. 풀이가 없는 문제는 전체 목록의 **풀이를 기다리는 문제** 에 모여 보이고, 누구든 [02. 풀이 제출](02-submit-solution.md) 로 올릴 수 있어요.
 
-둘 다 됩니다.
+<details>
+<summary>이슈 없이 등록하거나, 스크립트 없이 직접 만들려면</summary>
 
-- **같이 올리기**: 커밋 전에 `python scripts/new_solution.py <문제 이름 일부>` 로 풀이 파일을 만들어 같은 PR 에 넣습니다.
-- **문제만 먼저 올리기**: 풀이 없이 등록해도 됩니다. 나중에 본인이든 다른 사람이든 [02. 풀이 제출](02-submit-solution.md) 흐름으로 풀이만 따로 올리면 됩니다.
-  풀이가 없는 문제는 [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 의 **풀이를 기다리는 문제** 목록에 모여서 보입니다.
+- **이슈 없이**: `python scripts/new_problem.py` 만 실행하면 필요한 정보를 하나씩 물어봅니다.
+- **스크립트 없이**: [`templates/problem.md`](../templates/problem.md) 를 복사해 `problems/<플랫폼>/<폴더명>/README.md` 로 저장하고 `{{...}}` 부분을 채우세요. 폴더 이름 규칙은 [04 문서](04-directory-structure.md#플랫폼별-id-정하는-법)에 있습니다.
 
-## 스크립트 없이 수동으로 만들기
-
-스크립트를 쓸 수 없는 환경이라면 [`templates/problem.md`](../templates/problem.md) 를 복사해서
-`problems/<플랫폼>/<폴더명>/README.md` 로 저장하고 `{{...}}` 부분을 채우면 됩니다.
-`solutions/` 폴더는 풀이 파일을 넣을 때 만들어도 됩니다.
+</details>
 
 ---
 
-다음: [02. 풀이 제출](02-submit-solution.md)
+[← 00. 환경 준비](00-getting-started.md) · [📚 문서 목록](../README.md#문서-안내) · [02. 풀이 제출 →](02-submit-solution.md)
