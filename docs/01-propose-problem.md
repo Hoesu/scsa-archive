@@ -71,7 +71,7 @@ GitHub 에서 PR 을 만들 때:
 
 둘 다 됩니다.
 
-- **같이 올리기**: 커밋 전에 `python scripts/new_solution.py <문제 경로> --author <내아이디>` 로 풀이 파일을 만들어 같은 PR 에 넣습니다.
+- **같이 올리기**: 커밋 전에 `python scripts/new_solution.py <문제 이름 일부>` 로 풀이 파일을 만들어 같은 PR 에 넣습니다.
 - **문제만 먼저 올리기**: 풀이 없이 등록해도 됩니다. 나중에 본인이든 다른 사람이든 [02. 풀이 제출](02-submit-solution.md) 흐름으로 풀이만 따로 올리면 됩니다.
   풀이가 없는 문제는 [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 의 **풀이를 기다리는 문제** 목록에 모여서 보입니다.
 

@@ -95,7 +95,7 @@ def render(problems) -> str:
             f"## 풀이를 기다리는 문제 ({len(waiting)})",
             "",
             "아직 아무도 풀이를 올리지 않은 문제입니다. 첫 풀이의 주인공이 되어 주세요!",
-            "풀이 파일 만들기: `python scripts/new_solution.py <아래 경로> --author <내아이디>`",
+            "풀이 파일 만들기: `python scripts/new_solution.py <문제 이름 일부>`",
             "",
             "| 문제 | 플랫폼 | 난이도 | 경로 |",
             "|---|---|:---:|---|",

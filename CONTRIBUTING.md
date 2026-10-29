@@ -57,7 +57,7 @@
 | 명령 | 하는 일 |
 |---|---|
 | `python scripts/new_problem.py --issue <번호>` | 제안 이슈 내용으로 새 문제 폴더 생성 (`--issue` 없이 실행하면 대화형) |
-| `python scripts/new_solution.py <문제경로> --author <id>` | 내 풀이 파일 생성 |
+| `python scripts/new_solution.py <문제 이름 일부>` | 문제 검색 → 브랜치 자동 생성 → 내 풀이 파일 생성 |
 | `python scripts/validate.py` | 구조·이름 규칙 검사 (PR 올리기 전에!) |
 | `python scripts/build_index.py` | PROBLEMS.md 미리 보기 (로컬 전용, 자동으로 커밋 제외됨) |
 

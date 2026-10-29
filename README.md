@@ -17,10 +17,9 @@
 예시 문제 **programmers 12906 「같은 숫자는 싫어」** 에 내 풀이를 올려 봅시다.
 
 ```
-브랜치 만들기  →  풀이 작성  →  검사 · 커밋 · 푸시  →  PR 열기  →  리뷰 · 머지
+풀이 파일 만들기 (브랜치 자동)  →  코드 작성  →  검사 · 커밋 · 푸시  →  PR 열기  →  리뷰 · 머지
 ```
 
-> 명령어의 `<내아이디>` 는 **본인 GitHub ID** 로 바꿔서 입력하세요. (예: `Hoesu`)
 > Git 이 처음이라면 [00. 환경 준비](docs/00-getting-started.md) 를 먼저 끝내고 오세요.
 
 ### 0단계. 저장소 내려받기 (처음 한 번만)
@@ -30,26 +29,28 @@ git clone https://github.com/Hoesu/scsa-archive.git
 cd scsa-archive
 ```
 
-### 1단계. 작업용 브랜치 만들기
+### 1단계. 풀이 파일 만들기
 
-`main` 을 최신으로 받은 뒤, 이 문제 전용 브랜치를 만듭니다.
+`main` 을 최신으로 받은 뒤, **문제 이름 일부만** 넣어서 실행합니다.
 
 ```bash
 git switch main
 git pull
-git switch -c solve/<내아이디>/programmers-12906
+python scripts/new_solution.py 같은숫자
 ```
 
-### 2단계. 풀이 파일 만들고 코드 작성하기
+- 처음 한 번만 **내 GitHub ID** 를 묻습니다. 다음부터는 기억해요.
+- 제목·문제 번호·폴더 이름 일부로 찾습니다. 여러 개가 맞으면 번호로 고르고, 아무것도 안 넣으면 전체 목록에서 고릅니다.
+- 이 문제 전용 브랜치(`solve/<내아이디>/programmers-12906`)를 **자동으로 만들어** 줍니다.
 
-```bash
-python scripts/new_solution.py problems/programmers/12906-same-numbers --author <내아이디>
-```
+### 2단계. 코드 작성하기
 
 `solutions/<내아이디>.py` 파일이 생깁니다.
 맨 위 헤더(결과, 복잡도, 접근)를 채우고, 그 아래에 코드를 작성하세요.
 
 ### 3단계. 검사 → 커밋 → 푸시
+
+1단계 스크립트가 마지막에 **문제 제목과 브랜치 이름이 채워진 명령**을 출력합니다. 그대로 실행하면 됩니다.
 
 ```bash
 python scripts/validate.py          # "에러 0개" 가 나오는지 확인
