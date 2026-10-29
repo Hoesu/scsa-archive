@@ -15,10 +15,8 @@ PROBLEMS_DIR = ROOT / "problems"
 TEMPLATES_DIR = ROOT / "templates"
 
 # PROBLEMS.md 는 main 이 아닌 index 브랜치에 게시되므로, 문제 링크는 main 을 가리키는 절대 URL 로 만든다
-REPO_URL = "{}/{}".format(
-    os.environ.get("GITHUB_SERVER_URL", "https://github.com"),
-    os.environ.get("GITHUB_REPOSITORY", "Hoesu/scsa-archive"),
-)
+REPO = os.environ.get("GITHUB_REPOSITORY", "Hoesu/scsa-archive")
+REPO_URL = "{}/{}".format(os.environ.get("GITHUB_SERVER_URL", "https://github.com"), REPO)
 INDEX_URL = f"{REPO_URL}/blob/index/PROBLEMS.md"
 
 # 폴더명(key) -> 표시 이름
