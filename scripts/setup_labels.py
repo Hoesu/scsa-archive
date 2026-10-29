@@ -38,6 +38,7 @@ LABELS = [
     ("platform:swea", "f9d0c4", "SW Expert Academy"),
     ("platform:programmers", "f9d0c4", "Programmers"),
     ("platform:boj", "f9d0c4", "Baekjoon"),
+    ("platform:jungol", "f9d0c4", "JUNGOL (정보올림피아드)"),
     ("platform:leetcode", "f9d0c4", "LeetCode"),
     ("platform:etc", "f9d0c4", "기타 플랫폼"),
     # 난이도 (공통 척도)

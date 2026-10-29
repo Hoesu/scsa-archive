@@ -6,7 +6,7 @@
 
 ```
 problems/
-└── <플랫폼>/                          codetree | swea | programmers | boj | leetcode | etc
+└── <플랫폼>/                          codetree | swea | programmers | boj | jungol | leetcode | etc
     └── <문제id>-<영문-slug>/          예) 12906-same-numbers, 1206-view, maze-escape
         ├── README.md                  메타데이터(front matter) + 요약 + 힌트
         └── solutions/
@@ -46,6 +46,7 @@ problems/
 | SW Expert Academy | `swea` | 문제 제목 앞의 번호 | `1206. [S/W 문제해결 기본] 1일차 - View` → `1206-view` |
 | Codetree | `codetree` | 번호가 없으므로 URL 의 **마지막 영문 이름** | `.../problems/maze-escape/...` → `maze-escape` |
 | 백준 | `boj` | 문제 번호 | `acmicpc.net/problem/1000` → `1000-a-plus-b` |
+| JUNGOL (정올) | `jungol` | 문제 번호 | `jungol.co.kr/problem/1000` → `1000-a-plus-b` |
 | LeetCode | `leetcode` | 문제 번호 | `1. Two Sum` → `1-two-sum` |
 | 그 외 | `etc` | 출처를 알 수 있는 영문 id | `kakao-2023-emoticon` |
 

@@ -32,6 +32,10 @@
   - changed-files:
       - any-glob-to-any-file: "problems/boj/**"
 
+"platform:jungol":
+  - changed-files:
+      - any-glob-to-any-file: "problems/jungol/**"
+
 "platform:leetcode":
   - changed-files:
       - any-glob-to-any-file: "problems/leetcode/**"

@@ -1,7 +1,7 @@
 # SCSA Archive
 
 > 반 전체가 함께 만드는 **코딩테스트 문제 은행**
-> Codetree · SWEA · Programmers · 백준 등에서 좋은 문제를 발굴하고, **파이썬으로** 함께 풀고, 서로의 코드를 리뷰합니다.
+> Codetree · SWEA · Programmers · 백준 · 정올 등에서 좋은 문제를 발굴하고, **파이썬으로** 함께 풀고, 서로의 코드를 리뷰합니다.
 
 이 저장소의 목표는 두 가지입니다.
 
@@ -87,7 +87,7 @@ scsa-archive/
 │   │       └── solutions/
 │   │           ├── Hoesu.py      # <GitHub ID>.py
 │   │           └── Hoesu_dp.py   # 두 번째 풀이는 <ID>_<설명>.py
-│   └── swea/  codetree/  boj/  leetcode/  etc/
+│   └── swea/  codetree/  boj/  jungol/  leetcode/  etc/
 ├── PROBLEMS.md                   # 전체 목록 (자동 생성, 직접 수정 금지)
 ├── templates/                    # 문제 README / 풀이 템플릿
 ├── scripts/                      # 생성·검사·목록화 스크립트 (Python 표준 라이브러리만 사용)

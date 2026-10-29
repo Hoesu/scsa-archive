@@ -19,6 +19,7 @@ PLATFORMS = {
     "swea": "SW Expert Academy",
     "programmers": "Programmers",
     "boj": "Baekjoon",
+    "jungol": "JUNGOL",
     "leetcode": "LeetCode",
     "etc": "기타",
 }
