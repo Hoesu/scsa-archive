@@ -1,0 +1,45 @@
+name: 풀이 질문
+description: 막힌 문제나 다른 사람의 풀이에 대해 질문합니다
+title: "[질문] <문제 경로 또는 제목>"
+labels: ["질문"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        가벼운 잡담이나 열린 토론은 **Discussions** 탭이 더 어울립니다.
+        특정 풀이 코드의 특정 줄에 대한 질문이라면, 그 풀이가 올라온 **PR 에 직접 코멘트**하는 것도 좋아요.
+
+  - type: input
+    id: problem
+    attributes:
+      label: 문제 경로
+      placeholder: problems/programmers/12906-same-numbers
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: 질문 내용
+      description: 무엇을 시도했고, 어디서 막혔는지 구체적으로 적어주세요
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: 관련 코드 (선택)
+      description: 코드 블록으로 자동 변환됩니다
+      render: text
+
+  - type: dropdown
+    id: spoiler
+    attributes:
+      label: 스포일러 허용 범위
+      description: 답변자가 어디까지 알려줘도 될까요?
+      options:
+        - 힌트만 주세요
+        - 접근 방법까지 괜찮아요
+        - 정답 코드까지 괜찮아요
+    validations:
+      required: true

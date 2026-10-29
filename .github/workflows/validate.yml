@@ -1,0 +1,38 @@
+# PR 마다 폴더 구조 / 메타데이터 / 파일명 규칙을 검사한다.
+# 실패하면 PR 의 "Checks" 탭과 "Files changed" 탭에 어떤 파일이 왜 틀렸는지 표시된다.
+name: validate
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 구조 검사
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            python scripts/validate.py --author "${{ github.event.pull_request.user.login }}" --base "origin/${{ github.base_ref }}"
+          else
+            python scripts/validate.py
+          fi
+
+      - name: PROBLEMS.md 직접 수정 여부 확인
+        if: github.event_name == 'pull_request'
+        run: |
+          if git diff --name-only "origin/${{ github.base_ref }}...HEAD" | grep -qx "PROBLEMS.md"; then
+            echo "::warning file=PROBLEMS.md::PROBLEMS.md 는 머지 후 자동 생성됩니다. PR 에서 수정하면 충돌이 나기 쉬우니 변경을 되돌려 주세요."
+          fi

@@ -1,0 +1,89 @@
+name: 문제 제안
+description: 문제 은행에 추가하고 싶은 문제를 제안합니다
+title: "[제안] <플랫폼> <번호> <제목>"
+labels: ["문제-제안"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        좋은 문제를 발굴해 주셔서 감사합니다!
+        제출 전에 [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/main/PROBLEMS.md) 와 열린 이슈에서 **이미 등록/제안된 문제인지** 검색해 주세요.
+        제안이 `채택` 라벨을 받으면 [문제 등록 가이드](https://github.com/Hoesu/scsa-archive/blob/main/docs/01-propose-problem.md)에 따라 PR을 올려주세요.
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 플랫폼
+      options:
+        - codetree
+        - swea
+        - programmers
+        - boj
+        - leetcode
+        - etc
+    validations:
+      required: true
+
+  - type: input
+    id: problem-id
+    attributes:
+      label: 문제 번호 / id
+      description: Codetree 처럼 번호가 없으면 URL 마지막의 영문 이름 (예. maze-escape)
+      placeholder: "12906"
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: 문제 링크
+      placeholder: https://
+    validations:
+      required: true
+
+  - type: input
+    id: level
+    attributes:
+      label: 플랫폼 표기 레벨
+      placeholder: "Lv.2 / D3 / Silver 2 / 중급"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: 체감 난이도 (공통 척도)
+      description: 기준표는 docs/04-directory-structure.md 참고
+      options:
+        - "1 - 입문"
+        - "2 - 기초"
+        - "3 - 중급"
+        - "4 - 상급"
+        - "5 - 최상급"
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: 알고리즘 분류 (태그)
+      placeholder: "BFS, 시뮬레이션"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: 추천 이유
+      description: 왜 이 문제를 같이 풀면 좋을까요? (자주 나오는 유형, 함정, 기출 여부 등)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 확인 사항
+      options:
+        - label: PROBLEMS.md 와 기존 이슈에서 중복이 아님을 확인했습니다
+          required: true
+        - label: 채택되면 제가 직접 문제 등록 PR을 올리겠습니다 (선택)

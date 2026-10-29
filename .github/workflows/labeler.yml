@@ -1,0 +1,17 @@
+# 변경된 파일 경로를 보고 PR 에 라벨(플랫폼, 풀이/문제-등록 등)을 자동으로 붙인다.
+# 규칙은 .github/labeler.yml 에 있다.
+name: labeler
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v5

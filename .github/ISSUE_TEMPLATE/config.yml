@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 자유 토론 / 스터디 공지 (Discussions)
+    url: https://github.com/Hoesu/scsa-archive/discussions
+    about: 이슈로 만들기 애매한 이야기, 공지, 주간 회고는 Discussions 에서 나눠요
+  - name: 기여 가이드 읽기
+    url: https://github.com/Hoesu/scsa-archive/blob/main/CONTRIBUTING.md
+    about: 처음이라면 여기서부터!

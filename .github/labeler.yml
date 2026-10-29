@@ -1,0 +1,41 @@
+# actions/labeler v5 설정. 라벨 이름은 scripts/setup_labels.py 와 맞춘다.
+
+풀이:
+  - changed-files:
+      - any-glob-to-any-file: "problems/*/*/solutions/**"
+
+문제-등록:
+  - changed-files:
+      - any-glob-to-any-file: "problems/*/*/README.md"
+
+문서:
+  - changed-files:
+      - any-glob-to-any-file: ["README.md", "CONTRIBUTING.md", "docs/**"]
+
+개선:
+  - changed-files:
+      - any-glob-to-any-file: ["scripts/**", "templates/**", ".github/**"]
+
+"platform:codetree":
+  - changed-files:
+      - any-glob-to-any-file: "problems/codetree/**"
+
+"platform:swea":
+  - changed-files:
+      - any-glob-to-any-file: "problems/swea/**"
+
+"platform:programmers":
+  - changed-files:
+      - any-glob-to-any-file: "problems/programmers/**"
+
+"platform:boj":
+  - changed-files:
+      - any-glob-to-any-file: "problems/boj/**"
+
+"platform:leetcode":
+  - changed-files:
+      - any-glob-to-any-file: "problems/leetcode/**"
+
+"platform:etc":
+  - changed-files:
+      - any-glob-to-any-file: "problems/etc/**"

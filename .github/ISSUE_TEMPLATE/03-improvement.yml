@@ -1,0 +1,26 @@
+name: 저장소 개선 / 오류 제보
+description: 문서, 템플릿, 스크립트, 자동화(Actions)의 개선점이나 오류를 알려주세요
+title: "[개선] "
+labels: ["개선"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: 대상
+      options:
+        - 문서 (README, docs/)
+        - 템플릿 (이슈/PR/문제/풀이)
+        - 스크립트 (scripts/)
+        - GitHub Actions
+        - 문제 데이터 오류 (잘못된 링크, 난이도 등)
+        - 기타
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 내용
+      description: 무엇이 문제이고, 어떻게 바뀌면 좋을지 적어주세요
+    validations:
+      required: true
