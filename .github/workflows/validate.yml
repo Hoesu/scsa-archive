@@ -29,10 +29,3 @@ jobs:
           else
             python scripts/validate.py
           fi
-
-      - name: PROBLEMS.md 직접 수정 여부 확인
-        if: github.event_name == 'pull_request'
-        run: |
-          if git diff --name-only "origin/${{ github.base_ref }}...HEAD" | grep -qx "PROBLEMS.md"; then
-            echo "::warning file=PROBLEMS.md::PROBLEMS.md 는 머지 후 자동 생성됩니다. PR 에서 수정하면 충돌이 나기 쉬우니 변경을 되돌려 주세요."
-          fi

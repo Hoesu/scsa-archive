@@ -1,20 +1,24 @@
 """problems/ 를 훑어서 PROBLEMS.md (전체 문제 목록)를 생성한다.
 
 사용법:
-    python scripts/build_index.py
+    python scripts/build_index.py                     # 미리 보기 (저장소 루트에 생성, .gitignore 대상)
+    python scripts/build_index.py --output <경로>
 
-main 브랜치에 머지되면 GitHub Actions가 자동으로 실행하므로,
-PR에서 PROBLEMS.md 를 직접 수정할 필요는 없다. (충돌의 원인이 됨)
+main 에 머지되면 GitHub Actions 가 실행해서 결과를 index 브랜치에 올린다.
+main 은 보호 규칙 때문에 봇이 직접 커밋할 수 없으므로 목록은 별도 브랜치에 둔다.
 """
 
 from __future__ import annotations
 
+import argparse
 import sys
 from collections import Counter, defaultdict
+from pathlib import Path
 
 from common import (
     DIFFICULTY_LABELS,
     PLATFORMS,
+    REPO_URL,
     ROOT,
     SOLUTION_FILE_RE,
     iter_problem_dirs,
@@ -44,7 +48,7 @@ def collect():
             authors.add(m["author"].lower())
         tags = meta.get("tags") if isinstance(meta.get("tags"), list) else []
         problems.append({
-            "path": problem_dir.relative_to(ROOT).as_posix(),
+            "path": f"{REPO_URL}/tree/main/{problem_dir.relative_to(ROOT).as_posix()}",
             "platform": problem_dir.parent.name,
             "title": meta.get("title", problem_dir.name),
             "id": meta.get("id", ""),
@@ -62,7 +66,7 @@ def render(problems) -> str:
     out = [
         "# 전체 문제 목록",
         "",
-        "> 이 파일은 `scripts/build_index.py` 가 자동으로 생성합니다. **직접 수정하지 마세요.**",
+        "> 이 파일은 main 에 머지될 때마다 `scripts/build_index.py` 가 자동으로 생성해 `index` 브랜치에 올립니다. **직접 수정하지 마세요.**",
         "",
     ]
 
@@ -136,9 +140,13 @@ def render(problems) -> str:
 
 def main() -> int:
     setup_console()
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--output", type=Path, default=OUTPUT, help="결과 파일 경로 (기본: 저장소 루트의 PROBLEMS.md)")
+    a = p.parse_args()
+
     problems = collect()
-    OUTPUT.write_text(render(problems), encoding="utf-8", newline="\n")
-    print(f"PROBLEMS.md 생성 완료: 문제 {len(problems)}개")
+    a.output.write_text(render(problems), encoding="utf-8", newline="\n")
+    print(f"{a.output} 생성 완료: 문제 {len(problems)}개")
     return 0
 
 

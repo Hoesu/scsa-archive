@@ -34,5 +34,4 @@ Closes #
 - [ ] 파일 위치와 이름이 규칙을 따릅니다 (`problems/<플랫폼>/<id>-<slug>/solutions/<github-id>.py`)
 - [ ] 풀이 파일 맨 위 헤더(결과, 복잡도, 접근)를 채웠습니다
 - [ ] 문제 원문을 그대로 복사하지 않았습니다
-- [ ] `PROBLEMS.md` 는 수정하지 않았습니다 (머지 후 자동 갱신)
 - [ ] 로컬에서 `python scripts/validate.py` 를 통과했습니다

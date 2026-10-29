@@ -8,7 +8,7 @@
 1. **문제 은행 구축**: 시험 대비에 실제로 도움이 되는 문제를 유형별·난이도별로 모아 둡니다.
 2. **GitHub 협업 연습**: Issue → Branch → Pull Request → Code Review → Merge 로 이어지는 실무 흐름을 직접 경험합니다.
 
-📋 **[전체 문제 목록 보기 → PROBLEMS.md](PROBLEMS.md)**
+📋 **[전체 문제 목록 보기 → PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md)** (머지될 때마다 자동 갱신)
 
 ---
 
@@ -88,13 +88,13 @@ scsa-archive/
 │   │           ├── Hoesu.py      # <GitHub ID>.py
 │   │           └── Hoesu_dp.py   # 두 번째 풀이는 <ID>_<설명>.py
 │   └── swea/  codetree/  boj/  jungol/  leetcode/  etc/
-├── PROBLEMS.md                   # 전체 목록 (자동 생성, 직접 수정 금지)
 ├── templates/                    # 문제 README / 풀이 템플릿
 ├── scripts/                      # 생성·검사·목록화 스크립트 (Python 표준 라이브러리만 사용)
 ├── docs/                         # 사용 설명서
 └── .github/                      # 이슈/PR 템플릿, 자동화(Actions)
 ```
 
+전체 문제 목록(`PROBLEMS.md`)은 `main` 이 아니라 **`index` 브랜치**에 자동으로 만들어집니다.
 구조를 이렇게 정한 이유와 상세 규칙은 [폴더 구조와 네이밍 규칙](docs/04-directory-structure.md)에 있습니다.
 
 ## 문서

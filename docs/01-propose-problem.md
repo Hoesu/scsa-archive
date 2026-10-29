@@ -5,7 +5,7 @@
 
 ## 1단계. 중복 확인
 
-- [PROBLEMS.md](../PROBLEMS.md) 에서 `Ctrl+F` 로 번호/제목 검색
+- [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 에서 `Ctrl+F` 로 번호/제목 검색
 - [Issues](https://github.com/Hoesu/scsa-archive/issues?q=label%3A문제-제안) 에서 열린/닫힌 제안 검색
 
 ## 2단계. Issue 로 제안하기

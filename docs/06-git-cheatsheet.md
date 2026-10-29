@@ -58,8 +58,7 @@ main 의 내용
 3. `git add <파일>` → `git commit` → `git push`
 
 > 이 저장소에서는 풀이 파일이 사람마다 달라서 충돌이 드뭅니다.
-> 충돌이 났다면 대부분 **PROBLEMS.md 를 직접 수정했거나** 남의 파일을 건드린 경우입니다.
-> PROBLEMS.md 충돌은 `git checkout main -- PROBLEMS.md` 로 main 버전을 그대로 쓰면 됩니다.
+> 충돌이 났다면 대부분 **남의 파일이나 같은 문제 README 를 동시에 수정**한 경우입니다.
 
 ## 실수 되돌리기
 

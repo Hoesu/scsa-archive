@@ -26,7 +26,7 @@ problems/
 | **`플랫폼/문제id`** ✅ | 문제의 **변하지 않는 속성**만 경로에 사용 → 위치가 유일하고 영구적 |
 
 난이도, 유형(태그), 주차처럼 **바뀔 수 있는 정보는 README 의 메타데이터**에 적습니다.
-여러 기준으로 보는 기능은 [PROBLEMS.md](../PROBLEMS.md) (자동 생성) 가 플랫폼별·태그별로 제공합니다.
+여러 기준으로 보는 기능은 [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) (`index` 브랜치에 자동 생성) 가 플랫폼별·태그별로 제공합니다.
 
 ### 2. 문제 하나 = 폴더 하나, 풀이는 사람별 파일
 
