@@ -19,6 +19,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -52,6 +53,17 @@ ISSUE_FIELDS = {
     "체감 난이도 (공통 척도)": "difficulty",
     "알고리즘 분류 (태그)": "tags",
     "추천 이유": "reason",
+}
+
+FIELD_LABELS = {
+    "platform": "플랫폼",
+    "id": "id",
+    "title": "제목",
+    "url": "링크",
+    "level": "레벨",
+    "difficulty": "난이도",
+    "tags": "태그",
+    "proposer": "제안자",
 }
 
 REASON_PLACEHOLDER = "<!-- 어떤 유형을 연습하기 좋은지, 시험에 자주 나오는 패턴인지 등 -->"
@@ -176,16 +188,16 @@ def main() -> int:
         found = parse_issue_form(issue.get("body") or "")
         found["proposer"] = issue["user"]["login"]
         labels = {label["name"] for label in issue.get("labels", [])}
-        print(f"이슈 #{a.issue} 「{issue['title']}」 에서 정보를 가져왔습니다.")
+        print(f"이슈 #{a.issue} 「{issue['title']}」")
         if "채택" not in labels:
-            print("  * 아직 '채택' 라벨이 없는 이슈입니다. 등록 전에 채택 여부를 확인하세요.")
+            print("  * 아직 '채택' 라벨이 없습니다. 채택 여부를 확인하세요.")
         if "title" not in found:
             # 문제 제목 칸이 생기기 전에 작성된 이슈: 이슈 제목을 기본값으로 제안
             title_default = re.sub(r"^\[제안\]\s*", "", issue["title"]).strip() or None
-        for key in ("platform", "id", "title", "url", "level", "difficulty", "tags", "proposer"):
+        for key, label in FIELD_LABELS.items():
             if key in found:
-                print(f"  {key:<10} {found[key]}")
-        print()
+                pad = 8 - sum(2 if unicodedata.east_asian_width(c) == "W" else 1 for c in label)
+                print(f"  {label}{' ' * pad}{found[key]}")
 
     def get(name: str):
         return getattr(a, name) or found.get(name)
@@ -199,13 +211,13 @@ def main() -> int:
         raw_id = id_from_url(get("url"))
     if not raw_id:
         if platform == "codetree":
-            print("  * Codetree 는 문제 번호가 없으므로 URL 마지막의 영문 이름을 id 로 씁니다 (URL 을 붙여넣어도 됩니다)")
+            print("  * Codetree 는 URL 속 영문 이름이 id 입니다 (URL 을 붙여넣어도 돼요)")
         raw_id = ask("문제 id (번호 또는 영문 이름)", v_id)
     pid = normalize_id(raw_id)
     if not PROBLEM_ID_RE.match(pid):
         p.error(f"id 를 알아볼 수 없습니다: {raw_id!r} (예: 12906, maze-escape)")
     if pid != raw_id.strip():
-        print(f"  * id 를 규칙에 맞게 고쳤습니다: {raw_id.strip()} -> {pid}")
+        print(f"  * id 를 고쳤습니다: {raw_id.strip()} -> {pid}")
 
     registered = find_registered(platform, pid)
     if registered:
@@ -256,23 +268,15 @@ def main() -> int:
     (target / "solutions" / ".gitkeep").touch()
 
     rel = target.relative_to(ROOT).as_posix()
-    print(f"생성 완료: {rel}/\n")
-    print("다음 단계:")
-    print(f"  1) {rel}/README.md 의 '문제 요약', '핵심 포인트', '힌트'를 직접 작성 (원문 복사 금지)")
+    print(f"폴더 생성: {rel}/\n")
+    print("다음 단계")
+    print("  1) README.md 에 문제 요약·핵심 포인트·힌트 작성 (원문 복사 금지)")
     print("  2) python scripts/validate.py")
-    print("  3) 아래 세 줄을 그대로 실행")
-    print("     git add problems/")
+    print("  3) git add problems/")
     print(f"     git commit -m \"[문제] {title}\"")
     print(f"     git push -u origin {branch}")
-    if a.issue:
-        print(f"  4) GitHub 의 Compare & pull request 로 PR 을 만들고, 본문에 Closes #{a.issue} 한 줄 추가")
-        print("     (머지될 때 제안 이슈가 자동으로 닫힙니다)")
-    else:
-        print("  4) GitHub 의 Compare & pull request 로 PR 만들기")
-    print()
-    print("풀이는 같은 PR 에 넣어도 되고, 문제만 먼저 올린 뒤 나중에 따로 올려도 됩니다.")
-    print(f"  같이 넣으려면 3) 커밋 전에: python scripts/new_solution.py {pid}")
-    print("  나중에 올리려면: docs/02-submit-solution.md 참고 (다른 사람이 풀이를 올려도 됩니다)")
+    print(f"  4) GitHub 에서 PR 만들기{f' (본문에 Closes #{a.issue})' if a.issue else ''}")
+    print(f"\n풀이도 같이 올리려면 3) 전에: python scripts/new_solution.py {pid}")
     return 0
 
 
