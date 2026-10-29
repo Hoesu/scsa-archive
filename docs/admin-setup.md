@@ -73,6 +73,17 @@ squash 하나만 허용하면 `main` 기록이 "PR 1개 = 커밋 1개" 로 깔�
 | └ Dismiss stale pull request approvals when new commits are pushed | 선택 (켜면 엄격, 끄면 편함) |
 | └ Require conversation resolution before merging | ✅ (리뷰 코멘트를 무시하고 머지하는 것 방지) |
 | Require status checks to pass | ✅ → `validate` 추가 (PR 을 한 번 올려서 검사가 실행된 뒤에 목록에 나타남) |
+| Bypass list | **Repository admin** 추가 → 모드는 **For pull requests only** |
+
+### 관리자 예외 (Bypass list)
+
+GitHub 에서는 **PR 작성자가 자기 PR 을 승인할 수 없습니다.** 예외가 없으면 관리자 혼자서는 저장소 설정·문서를 고치는 PR 도 머지할 수 없습니다.
+그래서 "저장소 관리자"를 예외로 두되, 모드를 **For pull requests only** 로 제한합니다.
+
+- 관리자도 `main` 에 **직접 푸시는 불가**, 항상 PR 을 거칩니다.
+- PR 머지 화면에서 **Merge without waiting for requirements to be met (bypass rules)** 를 체크하면 승인 없이 머지할 수 있습니다.
+  (터미널: `gh pr merge <번호> --squash --admin`)
+- 팀원이 있다면 관리자 PR 도 가능한 한 **팀원 승인을 받고** 머지하는 것을 권장합니다. 예외는 급할 때만 쓰세요.
 
 ### 전체 문제 목록(PROBLEMS.md)은 index 브랜치에
 
