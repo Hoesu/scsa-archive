@@ -12,20 +12,22 @@ from __future__ import annotations
 
 import argparse
 import os
-import subprocess
 import sys
 from pathlib import Path
 
 from common import (
     PLATFORMS,
     PROBLEM_DIR_RE,
+    PROBLEM_ID_RE,
     PROBLEMS_DIR,
     REQUIRED_KEYS,
     ROOT,
     SOLUTION_EXT,
     SOLUTION_FILE_RE,
+    git,
     iter_problem_dirs,
     iter_solution_files,
+    nfc,
     parse_front_matter,
     setup_console,
 )
@@ -52,10 +54,11 @@ class Report:
         self.warnings.append(self._emit("warning", path, msg))
 
 
-def check_problem(problem_dir: Path, report: Report) -> None:
+def check_problem(problem_dir: Path, report: Report, seen_ids: dict) -> None:
     platform = problem_dir.parent.name
-    if not PROBLEM_DIR_RE.match(problem_dir.name):
-        report.error(problem_dir, "폴더명은 소문자/숫자/하이픈만 사용합니다 (예: 12906-same-numbers)")
+    name = nfc(problem_dir.name)
+    if not PROBLEM_DIR_RE.match(name):
+        report.error(problem_dir, "폴더명은 한글/영문 소문자/숫자와 하이픈만 사용합니다 (예: 12906-같은-숫자는-싫어)")
 
     readme = problem_dir / "README.md"
     if not readme.is_file():
@@ -75,9 +78,15 @@ def check_problem(problem_dir: Path, report: Report) -> None:
     if meta.get("platform") and meta["platform"] != platform:
         report.error(readme, f"platform 값({meta['platform']})이 상위 폴더명({platform})과 다릅니다")
 
-    pid = str(meta.get("id", "")).lower()
-    if pid and not (problem_dir.name == pid or problem_dir.name.startswith(pid + "-")):
-        report.error(readme, f"폴더명은 문제 id({pid})로 시작해야 합니다 (예: {pid}-slug)")
+    pid = str(meta.get("id", ""))
+    if pid and not PROBLEM_ID_RE.match(pid):
+        report.error(readme, f"id 는 영문 소문자/숫자와 하이픈(-)만 사용합니다: {pid} (예: 12906, baby-whale-first-voyage)")
+    if pid.isdigit() and not (name == pid or name.startswith(pid + "-")):
+        report.error(readme, f"번호가 있는 문제는 폴더명이 번호로 시작해야 합니다 (예: {pid}-문제-제목)")
+    if pid:
+        other = seen_ids.setdefault((platform, pid.lower()), problem_dir)
+        if other != problem_dir:
+            report.error(readme, f"같은 id({pid})의 문제가 이미 있습니다: {other.relative_to(ROOT).as_posix()}")
 
     if meta.get("url") and not str(meta["url"]).startswith(("http://", "https://")):
         report.error(readme, "url 은 http(s):// 로 시작해야 합니다")
@@ -109,22 +118,19 @@ def check_tree(report: Report) -> None:
             report.error(child, f"알 수 없는 플랫폼 폴더입니다 (허용: {', '.join(PLATFORMS)})")
         elif child.is_file() and child.name != ".gitkeep":
             report.warn(child, "problems/ 바로 아래에는 플랫폼 폴더만 둡니다")
+    seen_ids: dict = {}
     for problem_dir in iter_problem_dirs():
         if problem_dir.parent.name in PLATFORMS:
-            check_problem(problem_dir, report)
+            check_problem(problem_dir, report, seen_ids)
 
 
 def check_authorship(author: str, base: str, report: Report) -> None:
     """PR에서 새로 추가된 풀이 파일명이 PR 작성자의 GitHub ID로 시작하는지 확인 (경고만)."""
-    try:
-        out = subprocess.run(
-            ["git", "diff", "--name-only", "--diff-filter=A", f"{base}...HEAD"],
-            cwd=ROOT, capture_output=True, text=True, check=True,
-        ).stdout
-    except (subprocess.CalledProcessError, FileNotFoundError) as e:
-        print(f"(작성자 검사 건너뜀: {e})")
+    r = git("diff", "--name-only", "--diff-filter=A", f"{base}...HEAD")
+    if r.returncode != 0:
+        print(f"(작성자 검사 건너뜀: {r.stderr.strip()})")
         return
-    for rel in out.splitlines():
+    for rel in r.stdout.splitlines():
         path = ROOT / rel
         if path.parent.name != "solutions" or not rel.startswith("problems/"):
             continue

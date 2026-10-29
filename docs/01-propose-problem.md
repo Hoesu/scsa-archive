@@ -24,7 +24,7 @@
 | 칸 | 작성 요령 |
 |---|---|
 | 제목 | 미리 들어간 `[제안]` 뒤에 자유롭게. 예) `[제안] 같은 숫자는 싫어` |
-| 플랫폼 / 문제 번호 | Codetree 처럼 번호가 없으면 URL 마지막의 영문 이름 (예: `maze-escape`) |
+| 플랫폼 / 문제 번호 | Codetree 처럼 번호가 없으면 URL 속 영문 이름 (예: `maze-escape`). 헷갈리면 **URL 을 그대로 붙여넣어도** 됩니다 |
 | **문제 제목** | 플랫폼에 표기된 제목을 **그대로, 정확하게**. 목록·README 에 이 이름이 쓰입니다 |
 | 링크 / 레벨 | 플랫폼 표기 그대로 (예: `Lv.2`, `D3`, `Silver 2`) |
 | 체감 난이도 | 1~5. 기준은 [04 문서의 난이도 기준표](04-directory-structure.md#공통-난이도-기준표) |
@@ -52,16 +52,22 @@
 
 ### 4-1. 문제 폴더 만들기
 
+`main` 브랜치에서 이슈 번호만 넣어 실행합니다.
+
 ```bash
-git switch main && git pull
-git switch -c problem/<플랫폼>-<번호>               # 예) problem/programmers-12906
+git switch main
 python scripts/new_problem.py --issue <이슈 번호>    # 예) --issue 12
 ```
 
-`--issue` 를 주면 **이슈에 적힌 정보를 그대로 가져옵니다.** 다시 입력할 것은 거의 없어요.
+스크립트가 알아서 해주는 것:
 
-- 문제 번호가 숫자인 경우에만 폴더 이름에 붙일 **영문 slug** 를 물어봅니다. (예: `same-numbers`, 생략 가능)
-- 마지막에 커밋 메시지와 PR 에 쓸 `Closes #번호` 까지 알려줍니다.
+- **최신화**: `main` 을 최신으로 받습니다. (`git pull`)
+- **이슈 읽기**: 이슈에 적힌 정보를 그대로 가져옵니다. 다시 입력할 것이 없어요.
+- **id 정리**: `Delivery_Service` → `delivery-service` 처럼 규칙에 맞게 고칩니다. URL 이 적혀 있으면 그 안에서 id 를 꺼내요.
+- **중복 확인**: 이미 등록된 문제면 알려주고 멈춥니다.
+- **브랜치**: `problem/<플랫폼>-<id>` 브랜치를 만들고 이동합니다. (예: `problem/codetree-delivery-service`)
+- **문제 폴더**: 문제 제목으로 폴더를 만듭니다. (예: `12906-같은-숫자는-싫어`, `택배-하차`)
+- **다음 명령**: 커밋·푸시 명령과 PR 에 쓸 `Closes #번호` 까지 알려줍니다.
 
 ### 4-2. README 작성하기
 
@@ -74,7 +80,7 @@ python scripts/new_problem.py --issue <이슈 번호>    # 예) --issue 12
 | 핵심 포인트 / 함정 | 제한 조건, 엣지 케이스. 정답을 직접 말하지는 않기 |
 | 힌트 1, 2 | 접힌 블록(`<details>`) 안에 단계적으로 |
 
-예시: [`problems/programmers/12906-same-numbers/README.md`](../problems/programmers/12906-same-numbers/README.md)
+예시: [`problems/programmers/12906-같은-숫자는-싫어/README.md`](../problems/programmers/12906-같은-숫자는-싫어/README.md)
 
 ### 4-3. 커밋 → 푸시 → PR
 

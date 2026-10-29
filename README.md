@@ -31,14 +31,14 @@ cd scsa-archive
 **Issues → New issue → 문제 제안** 을 고르고 칸을 채운 뒤 **Submit** 하세요.
 반 친구들이 👍 로 투표하고, 운영진이 `채택` 라벨을 붙여줍니다.
 
-**2) 채택되면 등록** — 이슈 번호 하나로 문제 폴더가 만들어집니다.
+**2) 채택되면 등록** — 이슈 번호 하나로 작업 브랜치와 문제 폴더가 만들어집니다.
 
 ```bash
-git switch main && git pull
-git switch -c problem/<플랫폼>-<번호>              # 예) problem/programmers-12906
-python scripts/new_problem.py --issue <이슈 번호>   # 이슈에 적은 정보를 그대로 가져옵니다
+git switch main
+python scripts/new_problem.py --issue <이슈 번호>   # 예) --issue 12
 ```
 
+`main` 최신화, 브랜치 생성, 이슈 내용 채우기를 스크립트가 알아서 합니다.
 만들어진 README 에 **문제 요약과 힌트**를 쓰고, 스크립트가 알려주는 명령으로 커밋 → 푸시 → PR 을 올리면 끝입니다.
 
 ### B. 풀이 올리기
@@ -46,11 +46,11 @@ python scripts/new_problem.py --issue <이슈 번호>   # 이슈에 적은 정�
 **1) 풀이 파일 만들기** — 문제 이름 **일부만** 넣으면 됩니다.
 
 ```bash
-git switch main && git pull
+git switch main
 python scripts/new_solution.py 같은숫자
 ```
 
-문제 검색, 작업 브랜치 생성, 풀이 파일 생성을 스크립트가 알아서 합니다. (처음 한 번만 GitHub ID 를 물어봐요)
+`main` 최신화, 문제 검색, 작업 브랜치 생성, 풀이 파일 생성을 스크립트가 알아서 합니다. (처음 한 번만 GitHub ID 를 물어봐요)
 
 **2) 코드 작성** — 만들어진 `solutions/<내아이디>.py` 의 맨 위 헤더(결과, 접근)를 채우고 코드를 작성합니다.
 
@@ -96,7 +96,7 @@ git push -u origin solve/<내아이디>/programmers-12906
 ```
 scsa-archive/
 ├── problems/                       문제 은행 본체
-│   └── <플랫폼>/<문제id>-<slug>/    예) programmers/12906-same-numbers
+│   └── <플랫폼>/<문제 폴더>/         예) programmers/12906-같은-숫자는-싫어
 │       ├── README.md               문제 정보 + 요약 + 힌트
 │       └── solutions/
 │           └── <GitHub ID>.py      사람마다 한 파일
