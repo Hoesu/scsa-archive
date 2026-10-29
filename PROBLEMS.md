@@ -4,8 +4,8 @@
 
 ## 요약
 
-- 문제 **3**개 · 풀이 **4**개
-- 플랫폼별: Codetree 1 · Programmers 2
+- 문제 **4**개 · 풀이 **5**개
+- 플랫폼별: Codetree 2 · Programmers 2
 
 난이도는 플랫폼 간 비교를 위한 공통 척도입니다: `1` 입문, `2` 기초, `3` 중급, `4` 상급, `5` 최상급
 
@@ -14,6 +14,7 @@
 | 문제 | 레벨 | 난이도 | 태그 | 풀이 | 원문 |
 |---|---|:---:|---|:---:|:---:|
 | [아기 고래의 첫 항](https://github.com/Hoesu/scsa-archive/tree/main/problems/codetree/%EC%95%84%EA%B8%B0-%EA%B3%A0%EB%9E%98%EC%9D%98-%EC%B2%AB-%ED%95%AD) | L12 | ★★★ | `BFS` | 1 | [링크](https://www.codetree.ai/ko/frequent-problems/samsung-sw/problems/baby-whale-first-voyage/description) |
+| [로봇이 지나간 경로](https://github.com/Hoesu/scsa-archive/tree/main/problems/codetree/%EB%A1%9C%EB%B4%87%EC%9D%B4-%EC%A7%80%EB%82%98%EA%B0%84-%EA%B2%BD%EB%A1%9C) | Lv.12 | ★★★ | `BFS` | 1 | [링크](https://www.codetree.ai/ko/frequent-problems/hsat/problems/robot-passed-path/description?open=true) |
 
 ## Programmers
 
@@ -24,7 +25,7 @@
 
 ## 태그별 보기
 
-- **BFS** (1): [아기 고래의 첫 항](https://github.com/Hoesu/scsa-archive/tree/main/problems/codetree/%EC%95%84%EA%B8%B0-%EA%B3%A0%EB%9E%98%EC%9D%98-%EC%B2%AB-%ED%95%AD)
+- **BFS** (2): [로봇이 지나간 경로](https://github.com/Hoesu/scsa-archive/tree/main/problems/codetree/%EB%A1%9C%EB%B4%87%EC%9D%B4-%EC%A7%80%EB%82%98%EA%B0%84-%EA%B2%BD%EB%A1%9C), [아기 고래의 첫 항](https://github.com/Hoesu/scsa-archive/tree/main/problems/codetree/%EC%95%84%EA%B8%B0-%EA%B3%A0%EB%9E%98%EC%9D%98-%EC%B2%AB-%ED%95%AD)
 - **union-find** (1): [호텔 방 배정](https://github.com/Hoesu/scsa-archive/tree/main/problems/programmers/64063-%ED%98%B8%ED%85%94-%EB%B0%A9-%EB%B0%B0%EC%A0%95)
 - **구현** (1): [같은 숫자는 싫어](https://github.com/Hoesu/scsa-archive/tree/main/problems/programmers/12906-%EA%B0%99%EC%9D%80-%EC%88%AB%EC%9E%90%EB%8A%94-%EC%8B%AB%EC%96%B4)
 - **스택/큐** (1): [같은 숫자는 싫어](https://github.com/Hoesu/scsa-archive/tree/main/problems/programmers/12906-%EA%B0%99%EC%9D%80-%EC%88%AB%EC%9E%90%EB%8A%94-%EC%8B%AB%EC%96%B4)
@@ -33,7 +34,7 @@
 
 | 순위 | GitHub ID | 푼 문제 수 |
 |:---:|---|:---:|
-| 1 | [@dldhsdb34](https://github.com/dldhsdb34) | 1 |
-| 2 | [@hoesu](https://github.com/hoesu) | 1 |
+| 1 | [@hoesu](https://github.com/hoesu) | 2 |
+| 2 | [@dldhsdb34](https://github.com/dldhsdb34) | 1 |
 | 3 | [@jiho092](https://github.com/jiho092) | 1 |
 | 4 | [@zon1t](https://github.com/zon1t) | 1 |
