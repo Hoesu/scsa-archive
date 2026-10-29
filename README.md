@@ -14,22 +14,57 @@
 
 ## 3분 시작하기
 
+예시 문제 **programmers 12906 「같은 숫자는 싫어」** 에 내 풀이를 올려 봅시다.
+
+```
+브랜치 만들기  →  풀이 작성  →  검사 · 커밋 · 푸시  →  PR 열기  →  리뷰 · 머지
+```
+
+> 명령어의 `<내아이디>` 는 **본인 GitHub ID** 로 바꿔서 입력하세요. (예: `Hoesu`)
+> Git 이 처음이라면 [00. 환경 준비](docs/00-getting-started.md) 를 먼저 끝내고 오세요.
+
+### 0단계. 저장소 내려받기 (처음 한 번만)
+
 ```bash
 git clone https://github.com/Hoesu/scsa-archive.git
 cd scsa-archive
+```
 
-# 풀이 올리기: 브랜치 만들기 → 파일 생성 → 커밋 → 푸시 → PR
+### 1단계. 작업용 브랜치 만들기
+
+`main` 을 최신으로 받은 뒤, 이 문제 전용 브랜치를 만듭니다.
+
+```bash
+git switch main
+git pull
 git switch -c solve/<내아이디>/programmers-12906
+```
+
+### 2단계. 풀이 파일 만들고 코드 작성하기
+
+```bash
 python scripts/new_solution.py problems/programmers/12906-same-numbers --author <내아이디>
-# ... 코드 작성 ...
-python scripts/validate.py
-git add .
+```
+
+`solutions/<내아이디>.py` 파일이 생깁니다.
+맨 위 헤더(결과, 복잡도, 접근)를 채우고, 그 아래에 코드를 작성하세요.
+
+### 3단계. 검사 → 커밋 → 푸시
+
+```bash
+python scripts/validate.py          # "에러 0개" 가 나오는지 확인
+git add problems/
 git commit -m "solve: programmers 12906 같은 숫자는 싫어"
 git push -u origin solve/<내아이디>/programmers-12906
 ```
 
-푸시 후 GitHub 에 뜨는 **Compare & pull request** 버튼을 누르면 됩니다.
-처음이라면 **[CONTRIBUTING.md](CONTRIBUTING.md)** 부터 읽어주세요.
+### 4단계. PR 열고 리뷰 받기
+
+1. GitHub 저장소 페이지에 뜨는 **Compare & pull request** 버튼 클릭
+2. PR 템플릿을 채우고 **Create pull request**
+3. 리뷰 승인 1개 + 자동 검사 통과 → 본인이 **Squash and merge**
+
+더 자세한 설명은 [02. 풀이 제출](docs/02-submit-solution.md), 전체 규칙은 [CONTRIBUTING.md](CONTRIBUTING.md) 에 있습니다.
 
 ## 무엇을 할 수 있나요?
 
@@ -52,7 +87,7 @@ scsa-archive/
 │   │       └── solutions/
 │   │           ├── Hoesu.py      # <GitHub ID>.py
 │   │           └── Hoesu_dp.py   # 두 번째 풀이는 <ID>_<설명>.py
-│   ├── swea/  codetree/  boj/  leetcode/  etc/
+│   └── swea/  codetree/  boj/  leetcode/  etc/
 ├── PROBLEMS.md                   # 전체 목록 (자동 생성, 직접 수정 금지)
 ├── templates/                    # 문제 README / 풀이 템플릿
 ├── scripts/                      # 생성·검사·목록화 스크립트 (Python 표준 라이브러리만 사용)
