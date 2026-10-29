@@ -61,7 +61,7 @@ git push -u origin solve/<내아이디>/programmers-12906
 ### 4단계. PR 열고 리뷰 받기
 
 1. GitHub 저장소 페이지에 뜨는 **Compare & pull request** 버튼 클릭
-2. PR 템플릿을 채우고 **Create pull request**
+2. PR 유형과 체크리스트를 체크하고 **Create pull request**
 3. 리뷰 승인 1개 + 자동 검사 통과 → 본인이 **Squash and merge**
 
 더 자세한 설명은 [02. 풀이 제출](docs/02-submit-solution.md), 전체 규칙은 [CONTRIBUTING.md](CONTRIBUTING.md) 에 있습니다.

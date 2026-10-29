@@ -48,6 +48,7 @@ def collect():
             authors.add(m["author"].lower())
         tags = meta.get("tags") if isinstance(meta.get("tags"), list) else []
         problems.append({
+            "rel": problem_dir.relative_to(ROOT).as_posix(),
             "path": f"{REPO_URL}/tree/main/{problem_dir.relative_to(ROOT).as_posix()}",
             "platform": problem_dir.parent.name,
             "title": meta.get("title", problem_dir.name),
@@ -87,6 +88,22 @@ def render(problems) -> str:
         + ", ".join(f"`{k}` {v}" for k, v in DIFFICULTY_LABELS.items()),
         "",
     ]
+
+    waiting = sorted((p for p in problems if p["solution_count"] == 0), key=lambda p: (p["difficulty"], p["rel"]))
+    if waiting:
+        out += [
+            f"## 풀이를 기다리는 문제 ({len(waiting)})",
+            "",
+            "아직 아무도 풀이를 올리지 않은 문제입니다. 첫 풀이의 주인공이 되어 주세요!",
+            "풀이 파일 만들기: `python scripts/new_solution.py <아래 경로> --author <내아이디>`",
+            "",
+            "| 문제 | 플랫폼 | 난이도 | 경로 |",
+            "|---|---|:---:|---|",
+        ]
+        for p in waiting:
+            stars = "★" * p["difficulty"] if p["difficulty"] else "-"
+            out.append(f"| [{p['title']}]({p['path']}) | {PLATFORMS.get(p['platform'], p['platform'])} | {stars} | `{p['rel']}` |")
+        out.append("")
 
     for platform in PLATFORMS:
         items = by_platform.get(platform)
