@@ -2,6 +2,10 @@
 
 여러 플랫폼(Codetree, SWEA, Programmers, 백준 …)에서 모은 문제를 **한 가지 규칙**으로 정리하는 방법입니다.
 
+> [!NOTE]
+> 폴더·파일 이름은 `new_problem.py`, `new_solution.py` 가 알아서 맞춰주므로 **외울 필요는 없습니다.**
+> 이 문서는 규칙이 궁금하거나, 난이도·태그를 정할 때 참고하는 용도예요.
+
 ## 한눈에 보기
 
 ```
@@ -116,10 +120,10 @@ added: 2026-10-29                       # 등록일
 | `<github-id>.py` | `Hoesu.py` |
 | 같은 사람의 추가 풀이: `<github-id>_<설명>.py` (설명은 소문자/숫자/하이픈) | `Hoesu_dp.py`, `Hoesu_two-pointer.py` |
 | 언어 | **파이썬만** (`.py`) |
-| 파일 맨 위에 템플릿 헤더 | 결과, 복잡도, 접근, 회고 |
+| 파일 맨 위에 템플릿 헤더 | 결과, 접근, 회고 (복잡도는 선택) |
 
 입출력 예제 파일(SWEA `sample_input.txt` 등)은 플랫폼 저작물이므로 저장소에 올리지 않습니다.
 
 ---
 
-다음: [05. GitHub 기능 둘러보기](05-github-features.md)
+[← 03. 코드 리뷰](03-code-review.md) · [📚 문서 목록](../README.md#문서-안내) · [05. GitHub 기능 둘러보기 →](05-github-features.md)

@@ -233,7 +233,7 @@ def main() -> int:
     rel = target.relative_to(ROOT).as_posix()
     print(f"\n생성 완료: {rel}\n")
     print("다음 단계:")
-    print(f"  1) {rel} 를 열어 헤더(결과, 복잡도, 접근)와 코드를 작성")
+    print(f"  1) {rel} 를 열어 헤더(결과, 접근)와 코드를 작성 (복잡도는 선택)")
     print("  2) python scripts/validate.py")
     print("  3) 아래 세 줄을 그대로 실행")
     print("     git add problems/")
