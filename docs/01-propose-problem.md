@@ -66,7 +66,14 @@ git push -u origin problem/programmers-12906
 GitHub 에서 PR 을 만들 때:
 - 제목: `[문제] 같은 숫자는 싫어` (커밋 메시지를 이 형식으로 썼다면 이미 채워져 있어요)
 - 본문 아무 곳에 `Closes #제안이슈번호` 한 줄을 적습니다 → 머지되면 이슈가 자동으로 닫힙니다.
-- 본인 풀이도 있다면 같은 PR 에 포함해도 됩니다.
+
+### 풀이는 같이? 나중에?
+
+둘 다 됩니다.
+
+- **같이 올리기**: 커밋 전에 `python scripts/new_solution.py <문제 경로> --author <내아이디>` 로 풀이 파일을 만들어 같은 PR 에 넣습니다.
+- **문제만 먼저 올리기**: 풀이 없이 등록해도 됩니다. 나중에 본인이든 다른 사람이든 [02. 풀이 제출](02-submit-solution.md) 흐름으로 풀이만 따로 올리면 됩니다.
+  풀이가 없는 문제는 [PROBLEMS.md](https://github.com/Hoesu/scsa-archive/blob/index/PROBLEMS.md) 의 **풀이를 기다리는 문제** 목록에 모여서 보입니다.
 
 ## 스크립트 없이 수동으로 만들기
 

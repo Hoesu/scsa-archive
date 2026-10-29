@@ -230,6 +230,10 @@ def main() -> int:
     print(f"  4) git push -u origin {current_branch() if current_branch() not in ('main', '') else branch}")
     if a.issue:
         print(f"  5) PR 본문에 'Closes #{a.issue}' 한 줄을 적으면 머지 때 이슈가 자동으로 닫힙니다")
+    print()
+    print("풀이는 같은 PR 에 넣어도 되고, 문제만 먼저 올린 뒤 나중에 따로 올려도 됩니다.")
+    print(f"  같이 넣으려면 3) 커밋 전에: python scripts/new_solution.py {rel} --author <내아이디>")
+    print("  나중에 올리려면: docs/02-submit-solution.md 참고 (다른 사람이 풀이를 올려도 됩니다)")
     return 0
 
 
