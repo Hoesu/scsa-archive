@@ -54,7 +54,7 @@ python scripts/new_solution.py problems/programmers/12906-same-numbers --author 
 ```bash
 python scripts/validate.py          # "에러 0개" 가 나오는지 확인
 git add problems/
-git commit -m "solve: programmers 12906 같은 숫자는 싫어"
+git commit -m "[풀이] 같은 숫자는 싫어"
 git push -u origin solve/<내아이디>/programmers-12906
 ```
 

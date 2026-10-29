@@ -57,14 +57,14 @@ https://school.programmers.co.kr/learn/courses/30/lessons/12906
 python scripts/validate.py
 git status                       # 내가 바꾼 파일만 있는지 확인
 git add problems/programmers/12906-same-numbers/solutions/
-git commit -m "solve: programmers 12906 같은 숫자는 싫어"
+git commit -m "[풀이] 같은 숫자는 싫어"
 git push -u origin solve/<내아이디>/programmers-12906
 ```
 
 ## 4. Pull Request 만들기
 
 1. 푸시 후 GitHub 저장소에 들어가면 노란 배너의 **Compare & pull request** 클릭
-2. 제목: `[풀이]` 뒤에 문제 이름만 적으면 됩니다. 예) `[풀이] 같은 숫자는 싫어`
+2. 제목: `[풀이] 같은 숫자는 싫어` (커밋 메시지를 이 형식으로 썼다면 이미 채워져 있어요)
 3. 템플릿의 **풀이 요약**과 **리뷰어에게 특히 봐줬으면 하는 부분**을 채웁니다
 4. 오른쪽 **Reviewers** 에서 리뷰받고 싶은 사람을 1~2명 지정 (선택)
 5. 아직 작성 중이라면 **Create draft pull request** 로 만들 수 있어요
@@ -80,7 +80,7 @@ PR 을 만들면 자동으로:
 ```bash
 # 코드 수정 후
 git add .
-git commit -m "solve: 리뷰 반영 - 변수명 정리"
+git commit -m "[풀이] 리뷰 반영 - 변수명 정리"
 git push
 ```
 
