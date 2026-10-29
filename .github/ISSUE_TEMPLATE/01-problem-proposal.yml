@@ -1,6 +1,6 @@
 name: 문제 제안
 description: 문제 은행에 추가하고 싶은 문제를 제안합니다
-title: "[제안] <플랫폼> <번호> <제목>"
+title: "[제안] "
 labels: ["문제-제안"]
 body:
   - type: markdown
