@@ -1,6 +1,6 @@
 name: 풀이 질문
 description: 막힌 문제나 다른 사람의 풀이에 대해 질문합니다
-title: "[질문] <문제 경로 또는 제목>"
+title: "[질문] "
 labels: ["질문"]
 body:
   - type: markdown

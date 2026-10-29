@@ -18,7 +18,7 @@ GitHub 화면 이름은 2026년 기준이며, 메뉴 위치는 조금씩 바뀔 
 
 ```bash
 git add .
-git commit -m "chore: 문제 은행 초기 구조 세팅"
+git commit -m "[개선] 문제 은행 초기 구조 세팅"
 git push origin main
 ```
 

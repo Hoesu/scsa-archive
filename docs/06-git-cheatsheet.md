@@ -8,7 +8,7 @@ git switch -c solve/<id>/programmers-12906            # 2. 브랜치 생성
 # ... 작업 ...
 git status                                            # 3. 변경 확인
 git add <파일>                                         # 4. 스테이징
-git commit -m "solve: programmers 12906 같은 숫자는 싫어"  # 5. 커밋
+git commit -m "[풀이] 같은 숫자는 싫어"                # 5. 커밋
 git push -u origin solve/<id>/programmers-12906       # 6. 푸시 (처음엔 -u)
 # 7. GitHub 에서 PR 생성 → 리뷰 → 머지
 git switch main && git pull && git branch -d solve/<id>/programmers-12906   # 8. 정리

@@ -12,7 +12,8 @@
 
 1. **Issues → New issue → `문제 제안`** 템플릿 선택
 2. 플랫폼, 번호, 링크, 레벨, 체감 난이도, 태그, **추천 이유**를 채웁니다
-3. 제목 예시: `[제안] programmers 12906 같은 숫자는 싫어`
+3. 제목은 미리 들어가 있는 `[제안]` 뒤에 **문제 이름만** 자유롭게 적으면 됩니다. 예) `[제안] 같은 숫자는 싫어`
+   (플랫폼·번호는 아래 칸에 따로 적으니 제목에 넣지 않아도 돼요)
 4. **Submit new issue**
 
 > **좋은 추천 이유의 예**
@@ -52,12 +53,12 @@ python scripts/new_problem.py          # 질문에 차례로 답하면 폴더가
 ```bash
 python scripts/validate.py
 git add problems/
-git commit -m "problem: programmers 12906 같은 숫자는 싫어 등록"
+git commit -m "[문제] 같은 숫자는 싫어"
 git push -u origin problem/programmers-12906
 ```
 
 GitHub 에서 PR 을 만들 때:
-- 제목: `[문제] programmers/12906 같은 숫자는 싫어`
+- 제목: `[문제] 같은 숫자는 싫어` (커밋 메시지를 이 형식으로 썼다면 이미 채워져 있어요)
 - 본문의 `Closes #` 뒤에 **제안 이슈 번호**를 적습니다 → 머지되면 이슈가 자동으로 닫힙니다.
 - 본인 풀이도 있다면 같은 PR 에 포함해도 됩니다.
 
