@@ -93,7 +93,7 @@ git commit -m "[문제] 같은 숫자는 싫어"
 git push -u origin problem/programmers-12906
 ```
 
-GitHub 에서 **Compare & pull request** 를 누르고, PR 본문에 **`Closes #이슈번호`** 한 줄을 적으세요. 머지될 때 제안 이슈가 자동으로 닫힙니다.
+GitHub 에서 **Compare & pull request** 를 누르고, PR 본문의 **`Closes #`** 뒤에 제안 이슈 번호를 적으세요. (예: `Closes #12`) 머지될 때 제안 이슈가 자동으로 닫힙니다.
 
 > [!TIP]
 > **풀이도 같이 올릴까요?** 둘 다 됩니다.
