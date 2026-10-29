@@ -9,6 +9,15 @@
 
 난이도는 플랫폼 간 비교를 위한 공통 척도입니다: `1` 입문, `2` 기초, `3` 중급, `4` 상급, `5` 최상급
 
+## 풀이를 기다리는 문제 (1)
+
+아직 아무도 풀이를 올리지 않은 문제입니다. 첫 풀이의 주인공이 되어 주세요!
+풀이 파일 만들기: `python scripts/new_solution.py <아래 경로> --author <내아이디>`
+
+| 문제 | 플랫폼 | 난이도 | 경로 |
+|---|---|:---:|---|
+| [아기 고래의 첫 항해](https://github.com/Hoesu/scsa-archive/tree/main/problems/codetree/baby-whale-first-voyage) | Codetree | ★★★ | `problems/codetree/baby-whale-first-voyage` |
+
 ## Codetree
 
 | 문제 | 레벨 | 난이도 | 태그 | 풀이 | 원문 |
