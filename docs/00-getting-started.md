@@ -11,7 +11,7 @@
 | Git | `git --version` | https://git-scm.com (Windows 는 Git for Windows, 옵션은 기본값) |
 | Python 3.9+ | `python --version` (또는 `py --version`) | https://www.python.org (설치할 때 **Add python.exe to PATH** 체크) |
 | GitHub 계정 | - | https://github.com |
-| VS Code (선택) | - | Git 연동과 마크다운 미리보기가 편해요 |
+| VS Code (선택) | - | Git 연동과 마크다운 미리보기가 편해요. 저장소를 열면 들여쓰기 4칸이 자동으로 적용됩니다 |
 
 ## 2. 저장소 초대 수락
 
