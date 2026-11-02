@@ -4,8 +4,8 @@
 
 ## 요약
 
-- 문제 **4**개 · 풀이 **6**개
-- 플랫폼별: SW Expert Academy 4
+- 문제 **5**개 · 풀이 **7**개
+- 플랫폼별: Baekjoon 1 · SW Expert Academy 4
 
 난이도는 플랫폼 간 비교를 위한 공통 척도입니다: `1` 입문, `2` 기초, `3` 중급, `4` 상급, `5` 최상급
 
@@ -18,9 +18,16 @@
 | [29706. 메롱메롱 개구리와 파리의 우당탕탕 대소동](https://github.com/Hoesu/scsa-archive/tree/main/problems/swea/29706-%EB%A9%94%EB%A1%B1%EB%A9%94%EB%A1%B1-%EA%B0%9C%EA%B5%AC%EB%A6%AC%EC%99%80-%ED%8C%8C%EB%A6%AC%EC%9D%98-%EC%9A%B0%EB%8B%B9%ED%83%95%ED%83%95-%EB%8C%80%EC%86%8C%EB%8F%99) | D3 | ★★★★ | `시뮬레이션` | 3 | [링크](https://swexpertacademy.com/main/code/userProblem/userProblemDetail.do?contestProbId=AaD6W7R6kFPHBIPk&categoryId=AaD6W7R6kFPHBIPk&categoryType=CODE) |
 | [29717. 쥐를 잡자 쥐를 잡자 치치치](https://github.com/Hoesu/scsa-archive/tree/main/problems/swea/29717-%EC%A5%90%EB%A5%BC-%EC%9E%A1%EC%9E%90-%EC%A5%90%EB%A5%BC-%EC%9E%A1%EC%9E%90-%EC%B9%98%EC%B9%98%EC%B9%98) | D3 | ★★★★ | `시뮬레이션` | 1 | [링크](https://swexpertacademy.com/main/code/userProblem/userProblemDetail.do?contestProbId=AaD6YOoqdaLHBISc&categoryId=AaD6YOoqdaLHBISc&categoryType=CODE) |
 
+## Baekjoon
+
+| 문제 | 레벨 | 난이도 | 태그 | 풀이 | 원문 |
+|---|---|:---:|---|:---:|:---:|
+| [1194. 달이 차오른다, 가자.](https://github.com/Hoesu/scsa-archive/tree/main/problems/boj/1194-%EB%8B%AC%EC%9D%B4-%EC%B0%A8%EC%98%A4%EB%A5%B8%EB%8B%A4-%EA%B0%80%EC%9E%90) | G1 | ★★★★ | `BFS` | 1 | [링크](https://nahwasa.com/entry/%EC%9E%90%EB%B0%94-%EB%B0%B1%EC%A4%80-1194-%EB%8B%AC%EC%9D%B4-%EC%B0%A8%EC%98%A4%EB%A5%B8%EB%8B%A4-%EA%B0%80%EC%9E%90-java) |
+
 ## 태그별 보기
 
 - **시뮬레이션** (4): [점령전](https://github.com/Hoesu/scsa-archive/tree/main/problems/swea/29672-%EC%A0%90%EB%A0%B9%EC%A0%84), [604호 시뮬레이션](https://github.com/Hoesu/scsa-archive/tree/main/problems/swea/29696-604%ED%98%B8-%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98), [메롱메롱 개구리와 파리의 우당탕탕 대소동](https://github.com/Hoesu/scsa-archive/tree/main/problems/swea/29706-%EB%A9%94%EB%A1%B1%EB%A9%94%EB%A1%B1-%EA%B0%9C%EA%B5%AC%EB%A6%AC%EC%99%80-%ED%8C%8C%EB%A6%AC%EC%9D%98-%EC%9A%B0%EB%8B%B9%ED%83%95%ED%83%95-%EB%8C%80%EC%86%8C%EB%8F%99), [쥐를 잡자 쥐를 잡자 치치치](https://github.com/Hoesu/scsa-archive/tree/main/problems/swea/29717-%EC%A5%90%EB%A5%BC-%EC%9E%A1%EC%9E%90-%EC%A5%90%EB%A5%BC-%EC%9E%A1%EC%9E%90-%EC%B9%98%EC%B9%98%EC%B9%98)
+- **BFS** (1): [달이 차오른다, 가자.](https://github.com/Hoesu/scsa-archive/tree/main/problems/boj/1194-%EB%8B%AC%EC%9D%B4-%EC%B0%A8%EC%98%A4%EB%A5%B8%EB%8B%A4-%EA%B0%80%EC%9E%90)
 
 ## 🏆 기여 현황
 
@@ -28,10 +35,10 @@
 
 <table align="center"><tr>
 <td align="center" valign="bottom" width="160">
-🥈<br>
-<a href="https://github.com/hoesu"><img src="https://github.com/hoesu.png?size=144" width="72" height="72" alt="@hoesu"></a><br>
-<b><a href="https://github.com/hoesu">@hoesu</a></b><br>
-<sub>2점 · 풀이 1 · 제안 1</sub>
+🥇<br>
+<a href="https://github.com/zon1t"><img src="https://github.com/zon1t.png?size=144" width="72" height="72" alt="@zon1t"></a><br>
+<b><a href="https://github.com/zon1t">@zon1t</a></b><br>
+<sub>4점 · 풀이 2 · 제안 2</sub>
 </td>
 <td align="center" valign="bottom" width="160">
 🥇<br>
@@ -40,9 +47,9 @@
 <sub>4점 · 풀이 3 · 제안 1</sub>
 </td>
 <td align="center" valign="bottom" width="160">
-🥈<br>
-<a href="https://github.com/onyou-sub"><img src="https://github.com/onyou-sub.png?size=144" width="72" height="72" alt="@onyou-sub"></a><br>
-<b><a href="https://github.com/onyou-sub">@onyou-sub</a></b><br>
+🥉<br>
+<a href="https://github.com/hoesu"><img src="https://github.com/hoesu.png?size=144" width="72" height="72" alt="@hoesu"></a><br>
+<b><a href="https://github.com/hoesu">@hoesu</a></b><br>
 <sub>2점 · 풀이 1 · 제안 1</sub>
 </td>
 </tr></table>
@@ -50,7 +57,7 @@
 <table align="center">
 <tr><th>순위</th><th></th><th>GitHub ID</th><th>기여도</th><th>점수</th><th>풀이 수</th><th>제안 수</th></tr>
 <tr><td align="center">🥇</td><td align="center"><a href="https://github.com/jiho092"><img src="https://github.com/jiho092.png?size=56" width="28" height="28" alt="@jiho092"></a></td><td><a href="https://github.com/jiho092">@jiho092</a></td><td><img src="https://progress-bar.xyz/4/?scale=4&show_text=false&width=140&progress_color=2f81f7" alt="4점"></td><td align="center"><b>4</b></td><td align="center">3</td><td align="center">1</td></tr>
-<tr><td align="center">🥈</td><td align="center"><a href="https://github.com/hoesu"><img src="https://github.com/hoesu.png?size=56" width="28" height="28" alt="@hoesu"></a></td><td><a href="https://github.com/hoesu">@hoesu</a></td><td><img src="https://progress-bar.xyz/2/?scale=4&show_text=false&width=140&progress_color=2f81f7" alt="2점"></td><td align="center"><b>2</b></td><td align="center">1</td><td align="center">1</td></tr>
-<tr><td align="center">🥈</td><td align="center"><a href="https://github.com/onyou-sub"><img src="https://github.com/onyou-sub.png?size=56" width="28" height="28" alt="@onyou-sub"></a></td><td><a href="https://github.com/onyou-sub">@onyou-sub</a></td><td><img src="https://progress-bar.xyz/2/?scale=4&show_text=false&width=140&progress_color=2f81f7" alt="2점"></td><td align="center"><b>2</b></td><td align="center">1</td><td align="center">1</td></tr>
-<tr><td align="center">🥈</td><td align="center"><a href="https://github.com/zon1t"><img src="https://github.com/zon1t.png?size=56" width="28" height="28" alt="@zon1t"></a></td><td><a href="https://github.com/zon1t">@zon1t</a></td><td><img src="https://progress-bar.xyz/2/?scale=4&show_text=false&width=140&progress_color=2f81f7" alt="2점"></td><td align="center"><b>2</b></td><td align="center">1</td><td align="center">1</td></tr>
+<tr><td align="center">🥇</td><td align="center"><a href="https://github.com/zon1t"><img src="https://github.com/zon1t.png?size=56" width="28" height="28" alt="@zon1t"></a></td><td><a href="https://github.com/zon1t">@zon1t</a></td><td><img src="https://progress-bar.xyz/4/?scale=4&show_text=false&width=140&progress_color=2f81f7" alt="4점"></td><td align="center"><b>4</b></td><td align="center">2</td><td align="center">2</td></tr>
+<tr><td align="center">🥉</td><td align="center"><a href="https://github.com/hoesu"><img src="https://github.com/hoesu.png?size=56" width="28" height="28" alt="@hoesu"></a></td><td><a href="https://github.com/hoesu">@hoesu</a></td><td><img src="https://progress-bar.xyz/2/?scale=4&show_text=false&width=140&progress_color=2f81f7" alt="2점"></td><td align="center"><b>2</b></td><td align="center">1</td><td align="center">1</td></tr>
+<tr><td align="center">🥉</td><td align="center"><a href="https://github.com/onyou-sub"><img src="https://github.com/onyou-sub.png?size=56" width="28" height="28" alt="@onyou-sub"></a></td><td><a href="https://github.com/onyou-sub">@onyou-sub</a></td><td><img src="https://progress-bar.xyz/2/?scale=4&show_text=false&width=140&progress_color=2f81f7" alt="2점"></td><td align="center"><b>2</b></td><td align="center">1</td><td align="center">1</td></tr>
 </table>
