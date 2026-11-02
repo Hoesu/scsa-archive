@@ -11,6 +11,7 @@ https://swexpertacademy.com/main/code/userProblem/userProblemDetail.do?contestPr
 # 2 <= N <= 20, 1 <= T <= 10, 1 <= F <= 20, 1 <= K  <= 1000
 
 from collections import deque
+
 dij = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
 def custom_print(msg=None, mode=False):
@@ -20,8 +21,8 @@ def custom_print(msg=None, mode=False):
     if msg:
         print(msg)
     print(frog_info)
-    print(f'깊은 잠: ', sleep)
-    print(f'죽음   :', dead)
+    print('깊은 잠: ', sleep)
+    print('죽음   :', dead)
     for i in range(N):
         print(*board[i], end='\t')
         print(*fly[i], end='\t')
@@ -84,8 +85,7 @@ def jump(num):
         for j in range(N):
             if board[i][j] == 1 and frog[i][j] == 0:
                 dist = abs(si-i) + abs(sj-j)
-                if min_one > (dist, i, j):
-                    min_one = (dist, i, j)
+                min_one = min(min_one, (dist, i, j))
 
     if min_one[0] != 1000:
         ni, nj = min_one[1], min_one[2]
@@ -136,7 +136,7 @@ for idx in range(T):
 fly = [[[] for _ in range(N)] for _ in range(N)]
 fly_pos = set()
 for idx in range(F):
-    i, j, d = map(lambda x: int(x)-1, input().strip().split())
+    i, j, d = (int(x)-1 for x in input().strip().split())
     fly[i][j].append(d)
     fly_pos.add((i, j))
 

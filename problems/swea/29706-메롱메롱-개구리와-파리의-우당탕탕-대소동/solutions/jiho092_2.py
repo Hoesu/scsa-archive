@@ -28,15 +28,13 @@ def NNBB(si, sj, L):
             ci, cj = q.popleft()
 
             #파리먹기
-            if tmp_L <= L:
-                if sum(fly_arr[ci][cj]) > 0:
-                    ate_fly_cnt += sum(fly_arr[ci][cj])
-                    fly_arr[ci][cj] = [0] * 4
+            if tmp_L <= L and sum(fly_arr[ci][cj]) > 0:
+                ate_fly_cnt += sum(fly_arr[ci][cj])
+                fly_arr[ci][cj] = [0] * 4
 
             #동료 깨우기
-            if tmp_L == L+1:
-                if toad_arr[ci][cj] != 0:
-                    waked_toad_lst.add(toad_arr[ci][cj])
+            if tmp_L == L+1 and toad_arr[ci][cj] != 0:
+                waked_toad_lst.add(toad_arr[ci][cj])
 
             for di, dj in didj:
                 ni = ci + di
@@ -59,7 +57,7 @@ def manhattan(r1, c1, r2, c2):
 
 N, T, F, K = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range (N)]
-toad_info = dict()
+toad_info = {}
 fly_arr = [[[0] * 4 for _ in range (N)] for _ in range (N)]
 toad_arr = [[0] * N for _ in range (N)]
 
@@ -76,7 +74,7 @@ for _ in range (T-1):
     toad_arr[r - 1][c - 1] = num
 
 for _ in range (F):
-    r, c, d = map(lambda x: int(x)-1, input().split())
+    r, c, d = (int(x)-1 for x in input().split())
     fly_arr[r][c][d] += 1
 
 ans = 0
@@ -133,9 +131,8 @@ for k in range (1, K+1):
     #동료 상태 0으로 바꾸기
 
     for nakama in waked_toad_lst:
-        if toad_info.get(nakama):
-            if toad_info[nakama][3] == -1:
-                toad_info[nakama][3] = 0
+        if toad_info.get(nakama) and toad_info[nakama][3] == -1:
+            toad_info[nakama][3] = 0
 
     new_fly_arr = [[[0] * 4 for _ in range (N)] for _ in range (N)]
     #[3] 파리 이동
