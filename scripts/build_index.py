@@ -39,14 +39,14 @@ def collect():
             meta = parse_front_matter(readme.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             continue  # 형식 오류는 validate.py 가 잡는다
-        authors = set()
+        authors = Counter()  # 작성자 -> 이 문제에 올린 풀이 수
         solution_count = 0
         for f in iter_solution_files(problem_dir):
             m = SOLUTION_FILE_RE.match(f.name)
             if not m:
                 continue
             solution_count += 1
-            authors.add(m["author"].lower())
+            authors[m["author"].lower()] += 1
         tags = meta.get("tags") if isinstance(meta.get("tags"), list) else []
         problems.append({
             "rel": problem_dir.relative_to(ROOT).as_posix(),
@@ -59,6 +59,7 @@ def collect():
             "difficulty": int(meta["difficulty"]) if str(meta.get("difficulty", "")).isdigit() else 0,
             "tags": tags,
             "authors": authors,
+            "proposer": str(meta.get("proposer", "")).strip().lower(),
             "solution_count": solution_count,
         })
     return problems
@@ -139,22 +140,96 @@ def render(problems) -> str:
             out.append(f"- **{tag}** ({len(tag_map[tag])}): {links}")
         out.append("")
 
-    solved = Counter()
+    solutions = Counter()  # 작성자 -> 올린 풀이 수 (변형 풀이 포함)
+    proposals = Counter()  # 작성자 -> 제안(등록)한 문제 수
     for p in problems:
-        for a in p["authors"]:
-            solved[a] += 1
-    if solved:
-        out += [
-            "## 풀이 기여 현황",
-            "",
-            "| 순위 | GitHub ID | 푼 문제 수 |",
-            "|:---:|---|:---:|",
-        ]
-        for rank, (author, n) in enumerate(sorted(solved.items(), key=lambda x: (-x[1], x[0])), 1):
-            out.append(f"| {rank} | [@{author}](https://github.com/{author}) | {n} |")
-        out.append("")
+        for a, n in p["authors"].items():
+            solutions[a] += n
+        if p["proposer"]:
+            proposals[p["proposer"]] += 1
+    if solutions or proposals:
+        out += render_leaderboard(solutions, proposals)
 
     return "\n".join(out)
+
+
+MEDALS = {1: "🥇", 2: "🥈", 3: "🥉"}
+# 기여도 막대는 외부 서비스(progress-bar.xyz)가 그려 주는 SVG 이미지로 넣는다.
+# 서비스가 응답하지 않으면 alt 텍스트("4점")가 대신 보인다.
+BAR_URL = "https://progress-bar.xyz"
+BAR_WIDTH_PX = 140
+BAR_COLOR = "2f81f7"  # GitHub 파랑
+
+
+def progress_bar(pts: int, top: int) -> str:
+    params = f"scale={top}&show_text=false&width={BAR_WIDTH_PX}&progress_color={BAR_COLOR}"
+    return f'<img src="{BAR_URL}/{pts}/?{params}" alt="{pts}점">'
+
+
+def avatar(author: str, size: int) -> str:
+    return (
+        f'<a href="https://github.com/{author}">'
+        f'<img src="https://github.com/{author}.png?size={size * 2}" width="{size}" height="{size}" alt="@{author}">'
+        "</a>"
+    )
+
+
+def render_leaderboard(solutions: Counter, proposals: Counter) -> list[str]:
+    """기여 현황: 상위 3명 시상대 + 전체 순위표 (아바타·메달·막대).
+
+    기여 점수 = 풀이 수 + 제안 수 (각 1건당 1점). 점수가 같으면 같은 순위.
+    """
+    score = solutions + proposals
+    ranked = sorted(score, key=lambda a: (-score[a], a))
+    # 점수가 같으면 같은 순위 (1, 1, 3, ...)
+    rows = []
+    for i, author in enumerate(ranked):
+        same = rows and rows[-1][2] == score[author]
+        rows.append((rows[-1][0] if same else i + 1, author, score[author]))
+    top = rows[0][2]
+
+    out = [
+        "## 🏆 기여 현황",
+        "",
+        '<p align="center"><sub>기여 점수 = 풀이 수 + 제안 수 (각 1건당 1점)</sub></p>',
+        "",
+    ]
+
+    # 시상대: 2위 - 1위 - 3위 배치, 1위가 가장 크게
+    podium = rows[:3]
+    if len(podium) >= 2:
+        order = [podium[1], podium[0]] + podium[2:3]
+        sizes = {podium[0][1]: 96}
+        out += ['<table align="center"><tr>']
+        for rank, author, pts in order:
+            size = sizes.get(author, 72)
+            out += [
+                '<td align="center" valign="bottom" width="160">',
+                f"{MEDALS.get(rank, '')}<br>",
+                avatar(author, size) + "<br>",
+                f'<b><a href="https://github.com/{author}">@{author}</a></b><br>',
+                f"<sub>{pts}점 · 풀이 {solutions[author]} · 제안 {proposals[author]}</sub>",
+                "</td>",
+            ]
+        out += ["</tr></table>", ""]
+
+    # GitHub Markdown 표는 가운데 정렬이 안 되므로 시상대와 맞춰 HTML 표로 그린다.
+    out += [
+        '<table align="center">',
+        "<tr><th>순위</th><th></th><th>GitHub ID</th><th>기여도</th><th>점수</th><th>풀이 수</th><th>제안 수</th></tr>",
+    ]
+    for rank, author, pts in rows:
+        out.append(
+            f'<tr><td align="center">{MEDALS.get(rank, rank)}</td>'
+            f'<td align="center">{avatar(author, 28)}</td>'
+            f'<td><a href="https://github.com/{author}">@{author}</a></td>'
+            f"<td>{progress_bar(pts, top)}</td>"
+            f'<td align="center"><b>{pts}</b></td>'
+            f'<td align="center">{solutions[author]}</td>'
+            f'<td align="center">{proposals[author]}</td></tr>'
+        )
+    out += ["</table>", ""]
+    return out
 
 
 def main() -> int:

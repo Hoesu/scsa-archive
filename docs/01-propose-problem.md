@@ -80,7 +80,7 @@ python scripts/new_problem.py --issue <이슈 번호>    # 예) --issue 12
 | 핵심 포인트 / 함정 | 제한 조건, 엣지 케이스. 정답을 직접 말하지는 않기 |
 | 힌트 1, 2 | 접힌 블록(`<details>`) 안에 단계적으로 |
 
-예시: [`problems/programmers/12906-같은-숫자는-싫어/README.md`](../problems/programmers/12906-같은-숫자는-싫어/README.md)
+예시: [`problems/swea/29706-메롱메롱-개구리와-파리의-우당탕탕-대소동/README.md`](../problems/swea/29706-메롱메롱-개구리와-파리의-우당탕탕-대소동/README.md)
 
 ### 4-3. 커밋 → 푸시 → PR
 
