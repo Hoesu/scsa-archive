@@ -191,18 +191,22 @@ def render_leaderboard(solved: Counter) -> list[str]:
             ]
         out += ["</tr></table>", ""]
 
+    # GitHub Markdown 표는 가운데 정렬이 안 되므로 시상대와 맞춰 HTML 표로 그린다.
     out += [
-        "| 순위 | | GitHub ID | 기여도 | 푼 문제 |",
-        "|:---:|:---:|---|---|:---:|",
+        '<table align="center">',
+        "<tr><th>순위</th><th></th><th>GitHub ID</th><th>기여도</th><th>푼 문제</th></tr>",
     ]
     for rank, author, n in rows:
         filled = max(1, round(n / top * BAR_WIDTH))
         bar = "█" * filled + "░" * (BAR_WIDTH - filled)
         out.append(
-            f"| {MEDALS.get(rank, rank)} | {avatar(author, 28)} "
-            f"| [@{author}](https://github.com/{author}) | `{bar}` | **{n}** |"
+            f'<tr><td align="center">{MEDALS.get(rank, rank)}</td>'
+            f'<td align="center">{avatar(author, 28)}</td>'
+            f'<td><a href="https://github.com/{author}">@{author}</a></td>'
+            f"<td><code>{bar}</code></td>"
+            f'<td align="center"><b>{n}</b></td></tr>'
         )
-    out.append("")
+    out += ["</table>", ""]
     return out
 
 
