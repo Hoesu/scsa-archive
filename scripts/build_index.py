@@ -144,17 +144,66 @@ def render(problems) -> str:
         for a in p["authors"]:
             solved[a] += 1
     if solved:
-        out += [
-            "## 풀이 기여 현황",
-            "",
-            "| 순위 | GitHub ID | 푼 문제 수 |",
-            "|:---:|---|:---:|",
-        ]
-        for rank, (author, n) in enumerate(sorted(solved.items(), key=lambda x: (-x[1], x[0])), 1):
-            out.append(f"| {rank} | [@{author}](https://github.com/{author}) | {n} |")
-        out.append("")
+        out += render_leaderboard(solved)
 
     return "\n".join(out)
+
+
+MEDALS = {1: "🥇", 2: "🥈", 3: "🥉"}
+BAR_WIDTH = 12
+
+
+def avatar(author: str, size: int) -> str:
+    return (
+        f'<a href="https://github.com/{author}">'
+        f'<img src="https://github.com/{author}.png?size={size * 2}" width="{size}" height="{size}" alt="@{author}">'
+        "</a>"
+    )
+
+
+def render_leaderboard(solved: Counter) -> list[str]:
+    """풀이 기여 현황: 상위 3명 시상대 + 전체 순위표 (아바타·메달·막대)."""
+    ranked = sorted(solved.items(), key=lambda x: (-x[1], x[0]))
+    # 동점자는 같은 순위 (1, 1, 3, ...)
+    rows = []
+    for i, (author, n) in enumerate(ranked):
+        rank = rows[-1][0] if rows and rows[-1][2] == n else i + 1
+        rows.append((rank, author, n))
+    top = max(n for _, _, n in rows)
+
+    out = ["## 🏆 풀이 기여 현황", ""]
+
+    # 시상대: 2위 - 1위 - 3위 배치, 1위가 가장 크게
+    podium = rows[:3]
+    if len(podium) >= 2:
+        order = [podium[1], podium[0]] + podium[2:3]
+        sizes = {podium[0][1]: 96}
+        out += ['<table align="center"><tr>']
+        for rank, author, n in order:
+            size = sizes.get(author, 72)
+            out += [
+                '<td align="center" valign="bottom" width="160">',
+                f"{MEDALS.get(rank, '')}<br>",
+                avatar(author, size) + "<br>",
+                f'<b><a href="https://github.com/{author}">@{author}</a></b><br>',
+                f"<sub>{n}문제</sub>",
+                "</td>",
+            ]
+        out += ["</tr></table>", ""]
+
+    out += [
+        "| 순위 | | GitHub ID | 기여도 | 푼 문제 |",
+        "|:---:|:---:|---|---|:---:|",
+    ]
+    for rank, author, n in rows:
+        filled = max(1, round(n / top * BAR_WIDTH))
+        bar = "█" * filled + "░" * (BAR_WIDTH - filled)
+        out.append(
+            f"| {MEDALS.get(rank, rank)} | {avatar(author, 28)} "
+            f"| [@{author}](https://github.com/{author}) | `{bar}` | **{n}** |"
+        )
+    out.append("")
+    return out
 
 
 def main() -> int:
