@@ -56,7 +56,7 @@
 **Level 1 — 첫 기여**
 - [ ] 저장소에 ⭐ Star 누르기, **Watch → Custom → Pull requests, Issues** 설정하기
 - [ ] Discussions 의 자기소개 스레드에 인사 남기기
-- [ ] 예시 문제 `programmers/12906` 에 내 풀이로 첫 PR 올리기
+- [ ] 등록된 문제 하나를 골라 내 풀이로 첫 PR 올리기
 - [ ] 자동으로 붙은 라벨과 `validate` 검사 결과 확인하기
 
 **Level 2 — 리뷰 주고받기**

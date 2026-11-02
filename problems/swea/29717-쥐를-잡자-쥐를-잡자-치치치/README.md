@@ -6,7 +6,7 @@ url: https://swexpertacademy.com/main/code/userProblem/userProblemDetail.do?cont
 level: D3
 difficulty: 4
 tags: [시뮬레이션]
-proposer: Hoesu
+proposer: onyou-sub
 added: 2026-11-02
 ---
 
