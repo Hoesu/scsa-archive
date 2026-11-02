@@ -39,14 +39,14 @@ def collect():
             meta = parse_front_matter(readme.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             continue  # 형식 오류는 validate.py 가 잡는다
-        authors = set()
+        authors = Counter()  # 작성자 -> 이 문제에 올린 풀이 수
         solution_count = 0
         for f in iter_solution_files(problem_dir):
             m = SOLUTION_FILE_RE.match(f.name)
             if not m:
                 continue
             solution_count += 1
-            authors.add(m["author"].lower())
+            authors[m["author"].lower()] += 1
         tags = meta.get("tags") if isinstance(meta.get("tags"), list) else []
         problems.append({
             "rel": problem_dir.relative_to(ROOT).as_posix(),
@@ -139,12 +139,14 @@ def render(problems) -> str:
             out.append(f"- **{tag}** ({len(tag_map[tag])}): {links}")
         out.append("")
 
-    solved = Counter()
+    solved = Counter()     # 작성자 -> 푼 문제 수
+    solutions = Counter()  # 작성자 -> 올린 풀이 수 (변형 풀이 포함)
     for p in problems:
-        for a in p["authors"]:
+        for a, n in p["authors"].items():
             solved[a] += 1
+            solutions[a] += n
     if solved:
-        out += render_leaderboard(solved)
+        out += render_leaderboard(solved, solutions)
 
     return "\n".join(out)
 
@@ -161,15 +163,20 @@ def avatar(author: str, size: int) -> str:
     )
 
 
-def render_leaderboard(solved: Counter) -> list[str]:
-    """풀이 기여 현황: 상위 3명 시상대 + 전체 순위표 (아바타·메달·막대)."""
-    ranked = sorted(solved.items(), key=lambda x: (-x[1], x[0]))
-    # 동점자는 같은 순위 (1, 1, 3, ...)
+def render_leaderboard(solved: Counter, solutions: Counter) -> list[str]:
+    """풀이 기여 현황: 상위 3명 시상대 + 전체 순위표 (아바타·메달·막대).
+
+    순위는 푼 문제 수로 정하고, 같으면 올린 풀이 수가 많은 쪽이 앞선다.
+    (변형 풀이만 늘려서 순위를 올리지 못하도록 풀이 수는 보조 기준으로만 쓴다)
+    """
+    ranked = sorted(solved, key=lambda a: (-solved[a], -solutions[a], a))
+    # 문제 수와 풀이 수가 모두 같으면 같은 순위 (1, 1, 3, ...)
     rows = []
-    for i, (author, n) in enumerate(ranked):
-        rank = rows[-1][0] if rows and rows[-1][2] == n else i + 1
-        rows.append((rank, author, n))
-    top = max(n for _, _, n in rows)
+    for i, author in enumerate(ranked):
+        n, k = solved[author], solutions[author]
+        same = rows and rows[-1][2:] == (n, k)
+        rows.append((rows[-1][0] if same else i + 1, author, n, k))
+    top = max(r[2] for r in rows)
 
     out = ["## 🏆 풀이 기여 현황", ""]
 
@@ -179,14 +186,14 @@ def render_leaderboard(solved: Counter) -> list[str]:
         order = [podium[1], podium[0]] + podium[2:3]
         sizes = {podium[0][1]: 96}
         out += ['<table align="center"><tr>']
-        for rank, author, n in order:
+        for rank, author, n, k in order:
             size = sizes.get(author, 72)
             out += [
                 '<td align="center" valign="bottom" width="160">',
                 f"{MEDALS.get(rank, '')}<br>",
                 avatar(author, size) + "<br>",
                 f'<b><a href="https://github.com/{author}">@{author}</a></b><br>',
-                f"<sub>{n}문제</sub>",
+                f"<sub>{n}문제 · {k}풀이</sub>",
                 "</td>",
             ]
         out += ["</tr></table>", ""]
@@ -194,9 +201,9 @@ def render_leaderboard(solved: Counter) -> list[str]:
     # GitHub Markdown 표는 가운데 정렬이 안 되므로 시상대와 맞춰 HTML 표로 그린다.
     out += [
         '<table align="center">',
-        "<tr><th>순위</th><th></th><th>GitHub ID</th><th>기여도</th><th>푼 문제</th></tr>",
+        "<tr><th>순위</th><th></th><th>GitHub ID</th><th>기여도</th><th>푼 문제</th><th>풀이 수</th></tr>",
     ]
-    for rank, author, n in rows:
+    for rank, author, n, k in rows:
         filled = max(1, round(n / top * BAR_WIDTH))
         bar = "█" * filled + "░" * (BAR_WIDTH - filled)
         out.append(
@@ -204,7 +211,8 @@ def render_leaderboard(solved: Counter) -> list[str]:
             f'<td align="center">{avatar(author, 28)}</td>'
             f'<td><a href="https://github.com/{author}">@{author}</a></td>'
             f"<td><code>{bar}</code></td>"
-            f'<td align="center"><b>{n}</b></td></tr>'
+            f'<td align="center"><b>{n}</b></td>'
+            f'<td align="center">{k}</td></tr>'
         )
     out += ["</table>", ""]
     return out
