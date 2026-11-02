@@ -59,6 +59,7 @@ def collect():
             "difficulty": int(meta["difficulty"]) if str(meta.get("difficulty", "")).isdigit() else 0,
             "tags": tags,
             "authors": authors,
+            "proposer": str(meta.get("proposer", "")).strip().lower(),
             "solution_count": solution_count,
         })
     return problems
@@ -141,12 +142,15 @@ def render(problems) -> str:
 
     solved = Counter()     # 작성자 -> 푼 문제 수
     solutions = Counter()  # 작성자 -> 올린 풀이 수 (변형 풀이 포함)
+    proposals = Counter()  # 작성자 -> 제안(등록)한 문제 수
     for p in problems:
         for a, n in p["authors"].items():
             solved[a] += 1
             solutions[a] += n
-    if solved:
-        out += render_leaderboard(solved, solutions)
+        if p["proposer"]:
+            proposals[p["proposer"]] += 1
+    if solved or proposals:
+        out += render_leaderboard(solved, solutions, proposals)
 
     return "\n".join(out)
 
@@ -163,25 +167,28 @@ def avatar(author: str, size: int) -> str:
     )
 
 
-def render_leaderboard(solved: Counter, solutions: Counter) -> list[str]:
+def render_leaderboard(solved: Counter, solutions: Counter, proposals: Counter) -> list[str]:
     """풀이 기여 현황: 상위 3명 시상대 + 전체 순위표 (아바타·메달·막대).
 
     순위는 푼 문제 수로 정하고, 같으면 올린 풀이 수가 많은 쪽이 앞선다.
     (변형 풀이만 늘려서 순위를 올리지 못하도록 풀이 수는 보조 기준으로만 쓴다)
+    제안 수는 순위에 반영하지 않고 함께 보여주기만 한다. 풀이 없이 제안만 한 사람도 표에 나온다.
     """
-    ranked = sorted(solved, key=lambda a: (-solved[a], -solutions[a], a))
+    people = set(solved) | set(proposals)
+    ranked = sorted(people, key=lambda a: (-solved[a], -solutions[a], a))
     # 문제 수와 풀이 수가 모두 같으면 같은 순위 (1, 1, 3, ...)
     rows = []
     for i, author in enumerate(ranked):
         n, k = solved[author], solutions[author]
         same = rows and rows[-1][2:] == (n, k)
         rows.append((rows[-1][0] if same else i + 1, author, n, k))
-    top = max(r[2] for r in rows)
+    top = max(r[2] for r in rows) or 1
 
     out = ["## 🏆 풀이 기여 현황", ""]
 
     # 시상대: 2위 - 1위 - 3위 배치, 1위가 가장 크게
-    podium = rows[:3]
+    # 풀이 없이 제안만 한 사람은 시상대에 올리지 않는다.
+    podium = [row for row in rows if row[2] > 0][:3]
     if len(podium) >= 2:
         order = [podium[1], podium[0]] + podium[2:3]
         sizes = {podium[0][1]: 96}
@@ -193,7 +200,7 @@ def render_leaderboard(solved: Counter, solutions: Counter) -> list[str]:
                 f"{MEDALS.get(rank, '')}<br>",
                 avatar(author, size) + "<br>",
                 f'<b><a href="https://github.com/{author}">@{author}</a></b><br>',
-                f"<sub>{n}문제 · {k}풀이</sub>",
+                f"<sub>{n}문제 · {k}풀이 · {proposals[author]}제안</sub>",
                 "</td>",
             ]
         out += ["</tr></table>", ""]
@@ -201,18 +208,19 @@ def render_leaderboard(solved: Counter, solutions: Counter) -> list[str]:
     # GitHub Markdown 표는 가운데 정렬이 안 되므로 시상대와 맞춰 HTML 표로 그린다.
     out += [
         '<table align="center">',
-        "<tr><th>순위</th><th></th><th>GitHub ID</th><th>기여도</th><th>푼 문제</th><th>풀이 수</th></tr>",
+        "<tr><th>순위</th><th></th><th>GitHub ID</th><th>기여도</th><th>푼 문제</th><th>풀이 수</th><th>제안 수</th></tr>",
     ]
     for rank, author, n, k in rows:
-        filled = max(1, round(n / top * BAR_WIDTH))
+        filled = round(n / top * BAR_WIDTH) if n == 0 else max(1, round(n / top * BAR_WIDTH))
         bar = "█" * filled + "░" * (BAR_WIDTH - filled)
         out.append(
-            f'<tr><td align="center">{MEDALS.get(rank, rank)}</td>'
+            f'<tr><td align="center">{MEDALS.get(rank, rank) if n else "-"}</td>'
             f'<td align="center">{avatar(author, 28)}</td>'
             f'<td><a href="https://github.com/{author}">@{author}</a></td>'
             f"<td><code>{bar}</code></td>"
             f'<td align="center"><b>{n}</b></td>'
-            f'<td align="center">{k}</td></tr>'
+            f'<td align="center">{k}</td>'
+            f'<td align="center">{proposals[author]}</td></tr>'
         )
     out += ["</table>", ""]
     return out
