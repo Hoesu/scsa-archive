@@ -139,7 +139,7 @@ def merong(frog_num):
 # [2]. 이동할 연잎 찾기
 def find_leaf(frog_num):
     # (1). 개구리 정보 불러오기
-    fi, fj, fl = frog_info[frog_num]
+    fi, fj, _fl = frog_info[frog_num]
 
     # (2). 데이터 입력
     que = deque([(fi, fj)])
@@ -175,7 +175,7 @@ def find_leaf(frog_num):
 
 # [3]. 개구리 이동
 def frog_move(frog_num):
-    fi, fj, fl = frog_info[frog_num]
+    fi, fj, _fl = frog_info[frog_num]
 
     # (1). 현재 연잎 제거
     arr[fi][fj] = 0

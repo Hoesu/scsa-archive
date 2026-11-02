@@ -98,14 +98,14 @@ dc = [0, 1, 0, -1]
 for tc in range(1, T+1):
     N, C, D = map(int, input().split()) # 격자 크기, 쥐 개수, 일 수. 50, 50, 100
     matrix = [list(map(int, input().split())) for _ in range(N)] # 0 = 빈칸, -1 = 돌, 1-100 = 낙엽
-    chr, chc = map(lambda x: int(x)-1, input().split()) # 치치 위치
+    chr, chc = (int(x)-1 for x in input().split()) # 치치 위치
     mouse = [None] # 1번부터
     mouse_grid = [[0] * N for _ in range(N)] # 번호 표시
     caught = [] # 잡힌 쥐 번호 저장
     ans = -1 # 쥐 다 잡은 일 수
 
     for i in range(1, C+1):
-        r, c = map(lambda x: int(x)-1, input().split())
+        r, c = (int(x)-1 for x in input().split())
         mouse.append((r, c))
         mouse_grid[r][c] = i
 
