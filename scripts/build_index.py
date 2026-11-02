@@ -162,7 +162,7 @@ BAR_COLOR = "2f81f7"  # GitHub 파랑
 
 
 def progress_bar(pts: int, top: int) -> str:
-    params = f"scale={top}&suffix={quote('점')}&width={BAR_WIDTH_PX}&progress_color={BAR_COLOR}"
+    params = f"scale={top}&show_text=false&width={BAR_WIDTH_PX}&progress_color={BAR_COLOR}"
     return f'<img src="{BAR_URL}/{pts}/?{params}" alt="{pts}점">'
 
 
@@ -216,7 +216,7 @@ def render_leaderboard(solutions: Counter, proposals: Counter) -> list[str]:
     # GitHub Markdown 표는 가운데 정렬이 안 되므로 시상대와 맞춰 HTML 표로 그린다.
     out += [
         '<table align="center">',
-        "<tr><th>순위</th><th></th><th>GitHub ID</th><th>기여 점수</th><th>풀이 수</th><th>제안 수</th></tr>",
+        "<tr><th>순위</th><th></th><th>GitHub ID</th><th>기여도</th><th>점수</th><th>풀이 수</th><th>제안 수</th></tr>",
     ]
     for rank, author, pts in rows:
         out.append(
@@ -224,6 +224,7 @@ def render_leaderboard(solutions: Counter, proposals: Counter) -> list[str]:
             f'<td align="center">{avatar(author, 28)}</td>'
             f'<td><a href="https://github.com/{author}">@{author}</a></td>'
             f"<td>{progress_bar(pts, top)}</td>"
+            f'<td align="center"><b>{pts}</b></td>'
             f'<td align="center">{solutions[author]}</td>'
             f'<td align="center">{proposals[author]}</td></tr>'
         )
