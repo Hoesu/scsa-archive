@@ -154,16 +154,17 @@ def render(problems) -> str:
 
 
 MEDALS = {1: "🥇", 2: "🥈", 3: "🥉"}
-# 기여도 막대는 외부 서비스(progress-bar.xyz)가 그려 주는 SVG 이미지로 넣는다.
-# 서비스가 응답하지 않으면 alt 텍스트("4점")가 대신 보인다.
-BAR_URL = "https://progress-bar.xyz"
-BAR_WIDTH_PX = 140
-BAR_COLOR = "2f81f7"  # GitHub 파랑
+# 기여도 막대는 유니코드 블록 문자로 직접 그린다.
+# (예전에 쓰던 외부 이미지 서비스 progress-bar.xyz 가 내려가서 막대가 안 보이게 된 적이 있다.
+#  GitHub 는 인라인 style·data URI 를 지우므로, 외부 의존 없이 확실히 보이는 건 텍스트뿐이다.)
+BAR_CELLS = 10
 
 
 def progress_bar(pts: int, top: int) -> str:
-    params = f"scale={top}&show_text=false&width={BAR_WIDTH_PX}&progress_color={BAR_COLOR}"
-    return f'<img src="{BAR_URL}/{pts}/?{params}" alt="{pts}점">'
+    filled = round(BAR_CELLS * pts / top) if top else 0
+    if pts > 0:
+        filled = max(filled, 1)  # 1점이라도 있으면 한 칸은 보이게
+    return f"<code>{'█' * filled}{'░' * (BAR_CELLS - filled)}</code>"
 
 
 def avatar(author: str, size: int) -> str:
