@@ -11,8 +11,6 @@ https://www.codetree.ai/ko/frequent-problems/samsung-sw/problems/baby-whale-firs
 회고   : 고래야 잘가 
   -
 """
-
-
 from collections import deque
 # 디버그 모드
 debug_mode = 0
